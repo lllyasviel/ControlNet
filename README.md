@@ -214,3 +214,5 @@ Training a ControlNet is as easy as (or even easier than) training a simple pix2
     month = "Feb",
     year = "2022"
     }
+
+[Download the paper here](https://github.com/lllyasviel/ControlNet/raw/main/github_page/control.pdf).
