@@ -205,3 +205,12 @@ We provide simple python scripts to process images.
 Training a ControlNet is as easy as (or even easier than) training a simple pix2pix. 
 
 [See the steps here](train.md).
+
+# Citation
+
+    @misc{control2023,
+    author = "Lvmin Zhang and Maneesh Agrawala",
+    title = "Adding Conditional Control to Text-to-Image Diffusion Models",
+    month = "Feb",
+    year = "2022"
+    }
