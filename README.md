@@ -1,6 +1,6 @@
 # ControlNet
 
-Official implementation of [Adding Conditional Control to Text-to-Image Diffusion Models]().
+Official implementation of [Adding Conditional Control to Text-to-Image Diffusion Models](github_page/control.pdf).
 
 ControlNet is a neural network structure to control diffusion models by adding extra conditions.
 
