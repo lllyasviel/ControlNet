@@ -200,7 +200,7 @@ Ground Truth:
 
 ![img](github_page/t/gt.png)
 
-Note that SD's capability is preserved. Even training on this super aligned dataset, it still draws some random textures and those snow decorations. (Besides, note that the ground truth looks a bit modified because it is converted from SD's latent image.)
+Note that the SD's capability is preserved. Even training on this super aligned dataset, it still draws some random textures and those snow decorations. (Besides, note that the ground truth looks a bit modified because it is converted from SD's latent image.)
 
 Larger batch size and longer training will further improve this. Adequate training will make the filling perfect. 
 
