@@ -198,7 +198,7 @@ Prompt: "Plaster statue of Abraham Lincoln"
 
 We also trained a relatively simple ControlNet for anime line drawings. This tool may be useful for artistic creations. (Although the image details in the results is a bit modified, since it still diffuse latent images.)
 
-This model is not available right now. We need to evaluate the potential risks before release this model.
+This model is not available right now. We need to evaluate the potential risks before releasing this model.
 
 ![p](github_page/p21.png)
 
