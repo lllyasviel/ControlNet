@@ -224,6 +224,8 @@ This can be helpful when your computation power is limited and want to speed up 
 
 If your computation device is good, perhaps you do not need this. But I also know some artists are willing to train a model on their laptop for a month - in that case, perhaps this option can be useful.
 
+Note that training with 8 GB laptop GPU is challenging. We will need some GPU memory optimization at least as good as automatic111’s UI. This may require expert modifications to the code.
+
 ### sd_locked
 
 By default, sd_locked is True. When it is False, you will train the below architecture.
