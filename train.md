@@ -180,9 +180,11 @@ Thanks to our organized dataset pytorch object and the power of pytorch_lightnin
 
 Now, you may take a look at [Pytorch Lightning Official DOC](https://pytorch-lightning.readthedocs.io/en/latest/api/pytorch_lightning.trainer.trainer.Trainer.html?highlight=trainer) to find out how to enable many useful features like gradient accumulation, multiple GPU training, accelerated dataset loading, flexible checkpoint saving, etc. All these only need about one line of code. Great!
 
+Note that if you find OOM, perhaps you need to use smaller batch size and gradient accumulation. Or you may also want to use some “advanced” tricks like sliced attention or xformers.
+
 ### Screenshots
 
-The training is fast. After 4000 steps (batch size 4, learning rate 1e-5, about 50 minutes on a good RTX card), the results on my machine (in an output folder "image_log") is
+The training is fast. After 4000 steps (batch size 4, learning rate 1e-5, about 50 minutes on PCIE 40G), the results on my machine (in an output folder "image_log") is
 
 Control:
 
