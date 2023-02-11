@@ -1,11 +1,11 @@
+from share import *
+import config
+
 import cv2
 import einops
 import gradio as gr
 import numpy as np
 import torch
-
-from cldm.hack import disable_verbosity
-disable_verbosity()
 
 from pytorch_lightning import seed_everything
 from annotator.util import resize_image, HWC3
@@ -14,8 +14,9 @@ from cldm.model import create_model, load_state_dict
 from ldm.models.diffusion.ddim import DDIMSampler
 
 
-model = create_model('./models/cldm_v15.yaml').cuda()
-model.load_state_dict(load_state_dict('./models/control_sd15_hed.pth', location='cuda'))
+model = create_model('./models/cldm_v15.yaml').cpu()
+model.load_state_dict(load_state_dict('./models/control_sd15_hed.pth', location='cpu'))
+model = model.cuda()
 ddim_sampler = DDIMSampler(model)
 
 
@@ -35,14 +36,24 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
 
         seed_everything(seed)
 
+        if config.save_memory:
+            model.low_vram_shift(is_diffusing=False)
+
         cond = {"c_concat": [control], "c_crossattn": [model.get_learned_conditioning([prompt + ', ' + a_prompt] * num_samples)]}
         un_cond = {"c_concat": [control], "c_crossattn": [model.get_learned_conditioning([n_prompt] * num_samples)]}
         shape = (4, H // 8, W // 8)
+
+        if config.save_memory:
+            model.low_vram_shift(is_diffusing=True)
 
         samples, intermediates = ddim_sampler.sample(ddim_steps, num_samples,
                                                      shape, cond, verbose=False, eta=eta,
                                                      unconditional_guidance_scale=scale,
                                                      unconditional_conditioning=un_cond)
+
+        if config.save_memory:
+            model.low_vram_shift(is_diffusing=False)
+
         x_samples = model.decode_first_stage(samples)
         x_samples = (einops.rearrange(x_samples, 'b c h w -> b h w c') * 127.5 + 127.5).cpu().numpy().clip(0, 255).astype(np.uint8)
 

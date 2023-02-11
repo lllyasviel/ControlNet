@@ -26,7 +26,7 @@ This is also friendly to merge/replacement/offsetting of models/weights/blocks/l
 
 **Q:** But wait, if the weight of a conv layer is zero, the gradient will also be zero, and the network will not learn anything. Why "zero convolution" works?
 
-**A:** This is not true. [See an explanation here](FAQ.md).
+**A:** This is not true. [See an explanation here](docs/faq.md).
 
 # Stable Diffusion + ControlNet
 
@@ -48,6 +48,10 @@ All models and detectors can be downloaded from [our huggingface page](https://h
 We provide 9 Gradio apps with these models.
 
 All test images can be found at the folder "test_imgs".
+
+### News
+
+2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s).
 
 ## ControlNet with Canny Edge
 
@@ -206,13 +210,13 @@ This model is not available right now. We need to evaluate the potential risks b
 
 We provide simple python scripts to process images.
 
-[See a gradio example here](annotator.md).
+[See a gradio example here](docs/annotator.md).
 
 # Train with Your Own Data
 
 Training a ControlNet is as easy as (or even easier than) training a simple pix2pix. 
 
-[See the steps here](train.md).
+[See the steps here](docs/train.md).
 
 # Citation
 

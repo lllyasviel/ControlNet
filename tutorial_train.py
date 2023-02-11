@@ -1,5 +1,4 @@
-from cldm.hack import disable_verbosity
-disable_verbosity()
+from share import *
 
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
