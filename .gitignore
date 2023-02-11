@@ -1,5 +1,7 @@
 .idea/
 
+training/
+
 *.pth
 *.pt
 *.ckpt
