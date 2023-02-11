@@ -182,6 +182,8 @@ Now, you may take a look at [Pytorch Lightning Official DOC](https://pytorch-lig
 
 Note that if you find OOM, perhaps you need to use smaller batch size and gradient accumulation. Or you may also want to use some “advanced” tricks like sliced attention or xformers.
 
+Note that training with 8 GB laptop GPU is challenging. We will need some GPU memory optimization at least as good as automatic111’s UI. This may require expert modifications to the code.
+
 ### Screenshots
 
 The training is fast. After 4000 steps (batch size 4, learning rate 1e-5, about 50 minutes on PCIE 40G), the results on my machine (in an output folder "image_log") is
@@ -223,8 +225,6 @@ By default, only_mid_control is False. When it is True, you will train the below
 This can be helpful when your computation power is limited and want to speed up the training, or when you want to facilitate the "global" context learning. Note that sometimes you may pause training, set it to True, resume training, and pause again, and set it again, and resume again. 
 
 If your computation device is good, perhaps you do not need this. But I also know some artists are willing to train a model on their laptop for a month - in that case, perhaps this option can be useful.
-
-Note that training with 8 GB laptop GPU is challenging. We will need some GPU memory optimization at least as good as automatic111’s UI. This may require expert modifications to the code.
 
 ### sd_locked
 
