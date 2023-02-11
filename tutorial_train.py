@@ -1,3 +1,6 @@
+from cldm.hack import disable_verbosity
+disable_verbosity()
+
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from tutorial_dataset import MyDataset
