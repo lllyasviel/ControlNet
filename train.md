@@ -180,7 +180,15 @@ Thanks to our organized dataset pytorch object and the power of pytorch_lightnin
 
 Now, you may take a look at [Pytorch Lightning Official DOC](https://pytorch-lightning.readthedocs.io/en/latest/api/pytorch_lightning.trainer.trainer.Trainer.html?highlight=trainer) to find out how to enable many useful features like gradient accumulation, multiple GPU training, accelerated dataset loading, flexible checkpoint saving, etc. All these only need about one line of code. Great!
 
-Note that if you find OOM, perhaps you need to use smaller batch size and gradient accumulation. Or you may also want to use some “advanced” tricks like sliced attention or xformers.
+Note that if you find OOM, perhaps you need to use smaller batch size and gradient accumulation. Or you may also want to use some “advanced” tricks like sliced attention or xformers. For example:
+
+```python
+# Configs
+batch_size = 1
+
+# Misc
+trainer = pl.Trainer(gpus=1, precision=32, callbacks=[logger], accumulate_grad_batches=4)  # But this will be 4x slower
+```
 
 Note that training with 8 GB laptop GPU is challenging. We will need some GPU memory optimization at least as good as automatic111’s UI. This may require expert modifications to the code.
 
