@@ -10,7 +10,7 @@ from ldm.modules.attention import default
 
 def disable_verbosity():
     logging.set_verbosity_error()
-    print('logging.set_verbosity_error()')
+    print('logging improved.')
     return
 
 
