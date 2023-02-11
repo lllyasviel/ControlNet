@@ -24,7 +24,7 @@ This is also friendly to merge/replacement/offsetting of models/weights/blocks/l
 
 ### FAQ
 
-**Q:** But wait, if the weight of a conv layers is zero, the gradient will also be zero, and the network will not learn anything. Why "zero convolution" works?
+**Q:** But wait, if the weight of a conv layer is zero, the gradient will also be zero, and the network will not learn anything. Why "zero convolution" works?
 
 **A:** This is not true. [See an explanation here](FAQ.md).
 
