@@ -1,6 +1,6 @@
 # FAQs
 
-**Q:** If the weight of a conv layers is zero, the gradient will also be zero, and the network will not learn anything. Why "zero convolution" works?
+**Q:** If the weight of a conv layer is zero, the gradient will also be zero, and the network will not learn anything. Why "zero convolution" works?
 
 **A:** This is wrong. Let us consider a very simple 
 
