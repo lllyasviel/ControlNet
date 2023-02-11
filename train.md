@@ -16,7 +16,7 @@ This is simple: we want to control SD to fill a circle with colors, and the prom
 
 Stable diffusion is trained on billions of images, and it already knows what is "cyan", what is "circle", what is "pink", and what is "background".
 
-But is does not know the meaning of that "Control Image (Source Image)". Our target is to let it know.
+But it does not know the meaning of that "Control Image (Source Image)". Our target is to let it know.
 
 ## Step 1 - Get a dataset
 
