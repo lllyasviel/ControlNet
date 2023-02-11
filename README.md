@@ -152,7 +152,7 @@ Stable Diffusion 1.5 + ControlNet (using semantic segmentation)
 
     python gradio_seg2image.py
 
-This model use ADE20K's segmentation protocol. Again, this model deserves a better UI to directly draw the segmentations. However, again, Gradio is somewhat difficult to customize. Right now you need to input an image and then a model called Uniformer will detect the pose for you. Just try it for more details.
+This model use ADE20K's segmentation protocol. Again, this model deserves a better UI to directly draw the segmentations. However, again, Gradio is somewhat difficult to customize. Right now you need to input an image and then a model called Uniformer will detect the segmentations for you. Just try it for more details.
 
 Prompt: "House"
 ![p](github_page/p13.png)
