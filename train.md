@@ -4,7 +4,7 @@ You are here because you want to control SD in your own way, maybe you have an i
 
 Before moving on to your own dataset, we highly recommend to first try the toy dataset, Fill50K, as a sanity check. This will help you get a "feeling" for the training. You will know how long it will take for the model to converge and whether your device will be able to complete the training in an acceptable amount of time. And what it "feels" like when the model converges.
 
-We hope that after you read this page, you will find train a ControlNet is as easy as (or easier than) training a pix2pix.
+We hope that after you read this page, you will find that training a ControlNet is as easy as (or easier than) training a pix2pix.
 
 ## Step 0 - Design your control
 
