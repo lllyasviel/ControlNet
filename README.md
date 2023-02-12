@@ -51,7 +51,7 @@ All test images can be found at the folder "test_imgs".
 
 ### News
 
-2023/02/12 - Now you can play with any community models by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
+2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
 
 2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s) or if you want larger batch size.
 
@@ -204,7 +204,7 @@ Prompt: "Plaster statue of Abraham Lincoln"
 
 We also trained a relatively simple ControlNet for anime line drawings. This tool may be useful for artistic creations. (Although the image details in the results is a bit modified, since it still diffuse latent images.)
 
-This model is not available right now. We need to evaluate the potential risks before releasing this model. Nevertheless, you may be interested in [transferring the ControlNet to any community models](https://github.com/lllyasviel/ControlNet/discussions/12).
+This model is not available right now. We need to evaluate the potential risks before releasing this model. Nevertheless, you may be interested in [transferring the ControlNet to any community model](https://github.com/lllyasviel/ControlNet/discussions/12).
 
 ![p](github_page/p21.png)
 
