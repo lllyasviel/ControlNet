@@ -14,25 +14,25 @@ In the gradio UI of "gradio_annotator.py" we have the following interfaces:
 
 Be careful about "black edge and white background" or "white edge and black background".
 
-![p](github_page/a1.png)
+![p](../github_page/a1.png)
 
 ### HED Edge
 
 Be careful about "black edge and white background" or "white edge and black background".
 
-![p](github_page/a2.png)
+![p](../github_page/a2.png)
 
 ### MLSD Edge
 
 Be careful about "black edge and white background" or "white edge and black background".
 
-![p](github_page/a3.png)
+![p](../github_page/a3.png)
 
 ### MIDAS Depth and Normal
 
 Be careful about RGB or BGR in normal maps.
 
-![p](github_page/a4.png)
+![p](../github_page/a4.png)
 
 ### Openpose
 
@@ -40,10 +40,10 @@ Be careful about RGB or BGR in pose maps.
 
 For our production-ready model, the hand pose option is turned off.
 
-![p](github_page/a5.png)
+![p](../github_page/a5.png)
 
 ### Uniformer Segmentation
 
 Be careful about RGB or BGR in segmentation maps.
 
-![p](github_page/a6.png)
+![p](../github_page/a6.png)
