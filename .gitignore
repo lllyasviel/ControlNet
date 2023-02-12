@@ -5,6 +5,7 @@ training/
 *.pth
 *.pt
 *.ckpt
+*.safetensors
 
 my_fix.py
 

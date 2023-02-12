@@ -31,3 +31,4 @@ dependencies:
       - addict==2.4.0
       - yapf==0.32.0
       - prettytable==3.6.0
+      - safetensors==0.2.7
