@@ -51,7 +51,7 @@ All test images can be found at the folder "test_imgs".
 
 ### News
 
-2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s).
+2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s) or if you want larger batch size.
 
 ## ControlNet with Canny Edge
 
