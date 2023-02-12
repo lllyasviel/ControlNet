@@ -76,7 +76,7 @@ with block:
                 eta = gr.Number(label="eta (DDIM)", value=0.0)
                 a_prompt = gr.Textbox(label="Added Prompt", value='best quality, extremely detailed')
                 n_prompt = gr.Textbox(label="Negative Prompt",
-                                      value='longbody, lowres, bad anatomy, bad hands, missing fingers, pubic hair,extra digit, fewer digits, cropped, worst quality, low quality')
+                                      value='longbody, lowres, bad anatomy, bad hands, missing fingers,extra digit, fewer digits, cropped, worst quality, low quality')
         with gr.Column():
             result_gallery = gr.Gallery(label='Output', show_label=False, elem_id="gallery").style(grid=2, height='auto')
     ips = [input_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, scale, seed, eta]
