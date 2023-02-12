@@ -12,4 +12,4 @@ But it should be neat as I can diffuse at a batch size of 12 now.
 
 (prompt "man")
 
-![p](../github_page/i12.jpg)
+![p](../github_page/ram12.jpg)
