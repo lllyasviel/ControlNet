@@ -6,6 +6,7 @@ import einops
 import gradio as gr
 import numpy as np
 import torch
+import random
 
 from pytorch_lightning import seed_everything
 from annotator.util import resize_image, HWC3
@@ -34,6 +35,8 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
         control = torch.stack([control for _ in range(num_samples)], dim=0)
         control = einops.rearrange(control, 'b h w c -> b c h w').clone()
 
+        if seed == -1:
+            seed = random.randint(0, 2147483647)
         seed_everything(seed)
 
         if config.save_memory:
@@ -76,7 +79,7 @@ with block:
                 detect_resolution = gr.Slider(label="HED Resolution", minimum=128, maximum=1024, value=512, step=1)
                 ddim_steps = gr.Slider(label="Steps", minimum=1, maximum=100, value=20, step=1)
                 scale = gr.Slider(label="Guidance Scale", minimum=0.1, maximum=30.0, value=9.0, step=0.1)
-                seed = gr.Slider(label="Seed", minimum=0, maximum=2147483647, step=1, randomize=True)
+                seed = gr.Slider(label="Seed", minimum=-1, maximum=2147483647, step=1, randomize=True)
                 eta = gr.Number(label="eta (DDIM)", value=0.0)
                 a_prompt = gr.Textbox(label="Added Prompt", value='best quality, extremely detailed')
                 n_prompt = gr.Textbox(label="Negative Prompt",
