@@ -6,7 +6,7 @@ If you are using 8GB GPU card (or if you want larger batch size), please open "c
 save_memory = True
 ```
 
-Note that is feature is still being tested - not all graphics cards are guaranteed to succeed.
+This feature is still being tested - not all graphics cards are guaranteed to succeed.
 
 But it should be neat as I can diffuse at a batch size of 12 now.
 
