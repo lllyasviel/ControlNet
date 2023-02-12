@@ -5,6 +5,7 @@ import cv2
 import einops
 import gradio as gr
 import numpy as np
+import os
 import torch
 
 from pytorch_lightning import seed_everything
@@ -14,8 +15,8 @@ from cldm.model import create_model, load_state_dict
 from ldm.models.diffusion.ddim import DDIMSampler
 
 
-model = create_model('./models/cldm_v15.yaml').cpu()
-model.load_state_dict(load_state_dict('./models/control_sd15_openpose.pth', location='cpu'))
+model = create_model(os.path.join(config.models_dir, 'cldm_v15.yaml')).cpu()
+model.load_state_dict(load_state_dict(os.path.join(config.models_dir, 'control_sd15_openpose.pth'), location='cpu'))
 model = model.cuda()
 ddim_sampler = DDIMSampler(model)
 
