@@ -15,17 +15,32 @@ assert os.path.exists(os.path.dirname(path_output)), 'Output folder not exists!'
 
 import torch
 from share import *
-from cldm.model import load_state_dict, create_model
+from cldm.model import load_state_dict
 
 
 sd15_state_dict = load_state_dict(path_sd15)
 sd15_with_control_state_dict = load_state_dict(path_sd15_with_control)
 input_state_dict = load_state_dict(path_input)
 
-model = create_model('./models/cldm_v15.yaml').cpu()
-output_state_dict = model.state_dict()
 
-# balabala
+def get_node_name(name, parent_name):
+    if len(name) <= len(parent_name):
+        return False, ''
+    p = name[:len(parent_name)]
+    if p != parent_name:
+        return False, ''
+    return True, name[len(parent_name):]
 
-torch.save(output_state_dict, path_output)
+
+keys = sd15_with_control_state_dict.keys()
+
+final_state_dict = {}
+for key in keys:
+    is_control, node_name = get_node_name(key, 'control_')
+    if is_control:
+        pass
+    else:
+        pass
+
+torch.save(final_state_dict, path_output)
 print('Transferred model saved at ' + path_output)
