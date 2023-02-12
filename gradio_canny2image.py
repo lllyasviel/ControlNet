@@ -34,7 +34,7 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
         control = einops.rearrange(control, 'b h w c -> b c h w').clone()
 
         if seed == -1:
-            seed = random.randint(0, 2147483647)
+            seed = random.randint(0, 65535)
         seed_everything(seed)
 
         if config.save_memory:
