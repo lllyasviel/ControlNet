@@ -1,6 +1,6 @@
 # Enable Low VRAM Mode
 
-If you are using 8GB GPu card, please open "config.py", and then set
+If you are using 8GB GPu card (or if you want larger batch size), please open "config.py", and then set
 
 ```python
 save_memory = True
