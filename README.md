@@ -28,6 +28,10 @@ This is also friendly to merge/replacement/offsetting of models/weights/blocks/l
 
 **A:** This is not true. [See an explanation here](docs/faq.md).
 
+**Q:** How to use it
+
+**A:** A very detailed tutorial that shows install, run and use : [Tutorial link](https://www.youtube.com/watch?v=YJebdQ30UZQ)
+
 # Stable Diffusion + ControlNet
 
 By repeating the above simple structure 14 times, we can control stable diffusion in this way:
