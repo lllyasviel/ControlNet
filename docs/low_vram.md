@@ -10,4 +10,6 @@ Note that is feature is still being tested - not all graphics cards are guarante
 
 But it should be neat as I diffuse at a batch size of 12 now.
 
+(prompt "man")
+
 ![p](../github_page/i12.jpg)
