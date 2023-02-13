@@ -29,8 +29,10 @@ class MyDataset(Dataset):
         source = cv2.cvtColor(source, cv2.COLOR_BGR2RGB)
         target = cv2.cvtColor(target, cv2.COLOR_BGR2RGB)
 
-        # Normalize images to [-1, 1].
-        source = (source.astype(np.float32) / 127.5) - 1.0
+        # Normalize source images to [0, 1].
+        source = source.astype(np.float32) / 255.0
+
+        # Normalize target images to [-1, 1].
         target = (target.astype(np.float32) / 127.5) - 1.0
 
         return dict(jpg=target, txt=prompt, hint=source)
