@@ -1,6 +1,6 @@
 # ControlNet
 
-Official implementation of [Adding Conditional Control to Text-to-Image Diffusion Models](https://github.com/lllyasviel/ControlNet/raw/main/github_page/control.pdf).
+Official implementation of [Adding Conditional Control to Text-to-Image Diffusion Models](https://arxiv.org/abs/2302.05543).
 
 ControlNet is a neural network structure to control diffusion models by adding extra conditions.
 
@@ -222,11 +222,13 @@ Training a ControlNet is as easy as (or even easier than) training a simple pix2
 
 # Citation
 
-    @misc{control2023,
-    author = "Lvmin Zhang and Maneesh Agrawala",
-    title = "Adding Conditional Control to Text-to-Image Diffusion Models",
-    month = "Feb",
-    year = "2022"
+    @misc{zhang2023adding,
+      title={Adding Conditional Control to Text-to-Image Diffusion Models}, 
+      author={Lvmin Zhang and Maneesh Agrawala},
+      year={2023},
+      eprint={2302.05543},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
     }
 
-[Download the paper here](https://github.com/lllyasviel/ControlNet/raw/main/github_page/control.pdf).
+[Arxiv Link](https://arxiv.org/abs/2302.05543)
