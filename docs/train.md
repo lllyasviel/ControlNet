@@ -119,6 +119,8 @@ Do not ask us why we use these three names - this is related to the dark history
 
 Then you need to decide which Stable Diffusion Model you want to control. In this example, we will just use standard SD1.5. You can download it from the [official page of Stability](https://huggingface.co/runwayml/stable-diffusion-v1-5/tree/main). You want the file "v1-5-pruned.ckpt".
 
+(Or ["v2-1_512-ema-pruned.ckpt"](https://huggingface.co/stabilityai/stable-diffusion-2-1-base/tree/main) if you are using SD2)
+
 Then you need to attach a control net to the SD model. The architecture is 
 
 ![img](../github_page/sd.png)
@@ -128,6 +130,10 @@ Note that all weights inside the ControlNet are also copied from SD so that no l
 We provide a simple script for you to achieve this easily. If your SD filename is "./models/v1-5-pruned.ckpt" and you want the script to save the processed model (SD+ControlNet) at location "./models/control_sd15_ini.ckpt", you can just run:
 
     python tool_add_control.py ./models/v1-5-pruned.ckpt ./models/control_sd15_ini.ckpt
+
+Or if you are using SD2:
+
+    python tool_add_control_sd21.py ./models/v2-1_512-ema-pruned.ckpt ./models/control_sd21_ini.ckpt
 
 You may also use other filenames as long as the command is "python tool_add_control.py input_path output_path".
 
@@ -177,6 +183,7 @@ trainer = pl.Trainer(gpus=1, precision=32, callbacks=[logger])
 trainer.fit(model, dataloader)
 
 ```
+(or "tutorial_train_sd21.py" if you are using SD2)
 
 Thanks to our organized dataset pytorch object and the power of pytorch_lightning, the entire code is just super short.
 
