@@ -2,6 +2,8 @@
 
 Official implementation of [Adding Conditional Control to Text-to-Image Diffusion Models](https://arxiv.org/abs/2302.05543).
 
+Try out the Web Demo [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/hysts/ControlNet)
+
 ControlNet is a neural network structure to control diffusion models by adding extra conditions.
 
 ![img](github_page/he.png)
