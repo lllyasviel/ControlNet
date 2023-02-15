@@ -135,6 +135,10 @@ Or if you are using SD2:
 
     python tool_add_control_sd21.py ./models/v2-1_512-ema-pruned.ckpt ./models/control_sd21_ini.ckpt
 
+If you are using v parameterization:
+
+    python tool_add_control_sd21.py ./models/v2-1_512-ema-pruned.ckpt ./models/control_sd21_ini.ckpt --v_param
+
 You may also use other filenames as long as the command is "python tool_add_control.py input_path output_path".
 
 This is the correct output from my machine:
