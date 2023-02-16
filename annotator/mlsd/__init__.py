@@ -15,14 +15,14 @@ remote_model_path = "https://huggingface.co/lllyasviel/ControlNet/resolve/main/a
 
 
 class MLSDdetector:
-    def __init__(self):
+    def __init__(self, device):
         model_path = os.path.join(annotator_ckpts_path, "mlsd_large_512_fp32.pth")
         if not os.path.exists(model_path):
             from basicsr.utils.download_util import load_file_from_url
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         model = MobileV2_MLSD_Large()
         model.load_state_dict(torch.load(model_path), strict=True)
-        self.model = model.cuda().eval()
+        self.model = model.to(device).eval()
 
     def __call__(self, input_image, thr_v, thr_d):
         assert input_image.ndim == 3

@@ -15,12 +15,22 @@ from cldm.model import create_model, load_state_dict
 from ldm.models.diffusion.ddim import DDIMSampler
 
 
-apply_midas = MidasDetector()
+def get_device():
+    if(torch.cuda.is_available()):
+        return 'cuda'
+    elif(torch.backends.mps.is_available()):
+        return 'mps'
+    else:
+        return 'cpu'
+
+
+device = get_device()
+apply_midas = MidasDetector(device)
 
 model = create_model('./models/cldm_v15.yaml').cpu()
-model.load_state_dict(load_state_dict('./models/control_sd15_normal.pth', location='cuda'))
-model = model.cuda()
-ddim_sampler = DDIMSampler(model)
+model.load_state_dict(load_state_dict('./models/control_sd15_normal.pth', location=device))
+model = model.to(device)
+ddim_sampler = DDIMSampler(model, device)
 
 
 def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, detect_resolution, ddim_steps, scale, seed, eta, bg_threshold):
@@ -33,7 +43,7 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
 
         detected_map = cv2.resize(detected_map, (W, H), interpolation=cv2.INTER_LINEAR)
 
-        control = torch.from_numpy(detected_map[:, :, ::-1].copy()).float().cuda() / 255.0
+        control = torch.from_numpy(detected_map[:, :, ::-1].copy()).float().to(device) / 255.0
         control = torch.stack([control for _ in range(num_samples)], dim=0)
         control = einops.rearrange(control, 'b h w c -> b c h w').clone()
 
