@@ -1,11 +1,13 @@
 import numpy as np
 import cv2
+import os
 import torch
 from einops import rearrange
+from annotator.util import annotator_ckpts_path
 
 
 class Network(torch.nn.Module):
-    def __init__(self):
+    def __init__(self, model_path):
         super().__init__()
 
         self.netVggOne = torch.nn.Sequential(
@@ -64,7 +66,7 @@ class Network(torch.nn.Module):
             torch.nn.Sigmoid()
         )
 
-        self.load_state_dict({strKey.replace('module', 'net'): tenWeight for strKey, tenWeight in torch.load('./annotator/ckpts/network-bsds500.pth').items()})
+        self.load_state_dict({strKey.replace('module', 'net'): tenWeight for strKey, tenWeight in torch.load(model_path).items()})
 
     def forward(self, tenInput):
         tenInput = tenInput * 255.0
@@ -93,7 +95,12 @@ class Network(torch.nn.Module):
 
 class HEDdetector:
     def __init__(self):
-        self.netNetwork = Network().cuda().eval()
+        remote_model_path = "https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/network-bsds500.pth"
+        modelpath = os.path.join(annotator_ckpts_path, "network-bsds500.pth")
+        if not os.path.exists(modelpath):
+            from basicsr.utils.download_util import load_file_from_url
+            load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
+        self.netNetwork = Network(modelpath).cuda().eval()
 
     def __call__(self, input_image):
         assert input_image.ndim == 3
