@@ -91,22 +91,22 @@ class Network(torch.nn.Module):
 
         return self.netCombine(torch.cat([ tenScoreOne, tenScoreTwo, tenScoreThr, tenScoreFou, tenScoreFiv ], 1))
     # end
-# end
 
 
-netNetwork = Network().cuda().eval()
+class HEDdetector:
+    def __init__(self):
+        self.netNetwork = Network().cuda().eval()
 
-
-def apply_hed(input_image):
-    assert input_image.ndim == 3
-    input_image = input_image[:, :, ::-1].copy()
-    with torch.no_grad():
-        image_hed = torch.from_numpy(input_image).float().cuda()
-        image_hed = image_hed / 255.0
-        image_hed = rearrange(image_hed, 'h w c -> 1 c h w')
-        edge = netNetwork(image_hed)[0]
-        edge = (edge.cpu().numpy() * 255.0).clip(0, 255).astype(np.uint8)
-        return edge[0]
+    def __call__(self, input_image):
+        assert input_image.ndim == 3
+        input_image = input_image[:, :, ::-1].copy()
+        with torch.no_grad():
+            image_hed = torch.from_numpy(input_image).float().cuda()
+            image_hed = image_hed / 255.0
+            image_hed = rearrange(image_hed, 'h w c -> 1 c h w')
+            edge = self.netNetwork(image_hed)[0]
+            edge = (edge.cpu().numpy() * 255.0).clip(0, 255).astype(np.uint8)
+            return edge[0]
 
 
 def nms(x, t, s):

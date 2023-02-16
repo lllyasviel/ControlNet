@@ -2,12 +2,13 @@ from annotator.uniformer.mmseg.apis import init_segmentor, inference_segmentor, 
 from annotator.uniformer.mmseg.core.evaluation import get_palette
 
 
-checkpoint_file = "annotator/ckpts/upernet_global_small.pth"
-config_file = 'annotator/uniformer/exp/upernet_global_small/config.py'
-model = init_segmentor(config_file, checkpoint_file).cuda()
+class UniformerDetector:
+    def __init__(self):
+        checkpoint_file = "annotator/ckpts/upernet_global_small.pth"
+        config_file = 'annotator/uniformer/exp/upernet_global_small/config.py'
+        self.model = init_segmentor(config_file, checkpoint_file).cuda()
 
-
-def apply_uniformer(img):
-    result = inference_segmentor(model, img)
-    res_img = show_result_pyplot(model, img, result, get_palette('ade'), opacity=1)
-    return res_img
+    def __call__(self, img):
+        result = inference_segmentor(self.model, img)
+        res_img = show_result_pyplot(self.model, img, result, get_palette('ade'), opacity=1)
+        return res_img

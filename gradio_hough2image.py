@@ -10,10 +10,12 @@ import random
 
 from pytorch_lightning import seed_everything
 from annotator.util import resize_image, HWC3
-from annotator.mlsd import apply_mlsd
+from annotator.mlsd import MLSDdetector
 from cldm.model import create_model, load_state_dict
 from ldm.models.diffusion.ddim import DDIMSampler
 
+
+apply_mlsd = MLSDdetector()
 
 model = create_model('./models/cldm_v15.yaml').cpu()
 model.load_state_dict(load_state_dict('./models/control_sd15_mlsd.pth', location='cuda'))
