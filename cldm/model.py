@@ -9,8 +9,10 @@ def get_state_dict(d):
     return d.get('state_dict', d)
 
 
-def load_state_dict(ckpt_path, location='cpu'):
+def load_state_dict(ckpt_path, location):
     _, extension = os.path.splitext(ckpt_path)
+    if str(location) == "mps":
+        location = "cpu"
     if extension.lower() == ".safetensors":
         import safetensors.torch
         state_dict = safetensors.torch.load_file(ckpt_path, device=location)
