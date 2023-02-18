@@ -1,11 +1,13 @@
 import numpy as np
 import cv2
+import os
 import torch
 from einops import rearrange
+from annotator.util import annotator_ckpts_path
 
 
 class Network(torch.nn.Module):
-    def __init__(self):
+    def __init__(self, model_path):
         super().__init__()
 
         self.netVggOne = torch.nn.Sequential(
@@ -64,8 +66,7 @@ class Network(torch.nn.Module):
             torch.nn.Sigmoid()
         )
 
-        self.load_state_dict({strKey.replace('module', 'net'): tenWeight for strKey, tenWeight in torch.load('./annotator/ckpts/network-bsds500.pth').items()})
-    # end
+        self.load_state_dict({strKey.replace('module', 'net'): tenWeight for strKey, tenWeight in torch.load(model_path).items()})
 
     def forward(self, tenInput):
         tenInput = tenInput * 255.0
@@ -90,23 +91,27 @@ class Network(torch.nn.Module):
         tenScoreFiv = torch.nn.functional.interpolate(input=tenScoreFiv, size=(tenInput.shape[2], tenInput.shape[3]), mode='bilinear', align_corners=False)
 
         return self.netCombine(torch.cat([ tenScoreOne, tenScoreTwo, tenScoreThr, tenScoreFou, tenScoreFiv ], 1))
-    # end
-# end
 
 
-netNetwork = Network().cuda().eval()
+class HEDdetector:
+    def __init__(self):
+        remote_model_path = "https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/network-bsds500.pth"
+        modelpath = os.path.join(annotator_ckpts_path, "network-bsds500.pth")
+        if not os.path.exists(modelpath):
+            from basicsr.utils.download_util import load_file_from_url
+            load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
+        self.netNetwork = Network(modelpath).cuda().eval()
 
-
-def apply_hed(input_image):
-    assert input_image.ndim == 3
-    input_image = input_image[:, :, ::-1].copy()
-    with torch.no_grad():
-        image_hed = torch.from_numpy(input_image).float().cuda()
-        image_hed = image_hed / 255.0
-        image_hed = rearrange(image_hed, 'h w c -> 1 c h w')
-        edge = netNetwork(image_hed)[0]
-        edge = (edge.cpu().numpy() * 255.0).clip(0, 255).astype(np.uint8)
-        return edge[0]
+    def __call__(self, input_image):
+        assert input_image.ndim == 3
+        input_image = input_image[:, :, ::-1].copy()
+        with torch.no_grad():
+            image_hed = torch.from_numpy(input_image).float().cuda()
+            image_hed = image_hed / 255.0
+            image_hed = rearrange(image_hed, 'h w c -> 1 c h w')
+            edge = self.netNetwork(image_hed)[0]
+            edge = (edge.cpu().numpy() * 255.0).clip(0, 255).astype(np.uint8)
+            return edge[0]
 
 
 def nms(x, t, s):
