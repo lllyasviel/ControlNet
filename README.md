@@ -236,23 +236,7 @@ Besides, you may also want to read these amazing related works:
 
 [InstructPix2Pix Learning to Follow Image Editing Instructions](https://www.timothybrooks.com/instruct-pix2pix): Image Editing using prompts!
 
-[Pix2pix-zero: Zero-shot Image-to-Image Translation](https://github.com/pix2pixzero/pix2pix-zero)
-
-[Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation](https://github.com/MichalGeyer/plug-and-play)
-
-[MaskSketch: Unpaired Structure-guided Masked Image Generation](https://arxiv.org/abs/2302.05496)
-
-[SEGA: Instructing Diffusion using Semantic Dimensions](https://arxiv.org/abs/2301.12247)
-
-[Universal Guidance for Diffusion Models](https://github.com/arpitbansal297/Universal-Guided-Diffusion)
-
-[Region-Aware Diffusion for Zero-shot Text-driven Image Editing](https://github.com/haha-lisa/RDM-Region-Aware-Diffusion-Model)
-
-[Domain Expansion of Image Generators](https://arxiv.org/abs/2301.05225)
-
-[Image Mixer](https://twitter.com/LambdaAPI/status/1626327289288957956)
-
-[MultiDiffusion: Fusing Diffusion Paths for Controlled Image Generation](https://multidiffusion.github.io/)
+[Pix2pix-zero: Zero-shot Image-to-Image Translation](https://github.com/pix2pixzero/pix2pix-zero), [Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation](https://github.com/MichalGeyer/plug-and-play), [MaskSketch: Unpaired Structure-guided Masked Image Generation](https://arxiv.org/abs/2302.05496), [SEGA: Instructing Diffusion using Semantic Dimensions](https://arxiv.org/abs/2301.12247), [Universal Guidance for Diffusion Models](https://github.com/arpitbansal297/Universal-Guided-Diffusion), [Region-Aware Diffusion for Zero-shot Text-driven Image Editing](https://github.com/haha-lisa/RDM-Region-Aware-Diffusion-Model), [Domain Expansion of Image Generators](https://arxiv.org/abs/2301.05225), [Image Mixer](https://twitter.com/LambdaAPI/status/1626327289288957956), [MultiDiffusion: Fusing Diffusion Paths for Controlled Image Generation](https://multidiffusion.github.io/)
 
 # Citation
 
