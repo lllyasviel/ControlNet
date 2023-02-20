@@ -236,6 +236,10 @@ Because no prompt is available, the ControlNet encoder will "guess" what is in t
 
 ![p](github_page/uc4.png)
 
+Without prompt, the HED seems good at generating images look like paintings:
+
+![p](github_page/uc5.png)
+
 # Annotate Your Own Data
 
 We provide simple python scripts to process images.
