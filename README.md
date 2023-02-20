@@ -238,7 +238,7 @@ Because no prompt is available, the ControlNet encoder will "guess" what is in t
 
 Without prompt, the HED seems good at generating images look like paintings:
 
-![p](github_page/uc5.png)
+![p](github_page/uc6.png)
 
 # Annotate Your Own Data
 
