@@ -230,7 +230,9 @@ For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
 
 Besides, if you write a script to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
 
-![p](github_page/uc2.png)
+![p](github_page/uc2a.png)
+
+![p](github_page/uc2b.png)
 
 Note that the below example is 768×768.
 
