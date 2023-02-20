@@ -222,7 +222,7 @@ In this mode, you can just remove all prompts, and then the ControlNet encoder w
 
 This task is the most difficult one among all tasks in this work.
 
-This mode is very suitable for comparing different methods to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, different methods' performance will be **very salient**.
+This mode is very suitable for comparing different methods to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between methods will be **very salient**.
 
 Feel free to reproduce the below examples using the parameters in the screenshots.
 
