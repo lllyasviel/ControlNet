@@ -236,7 +236,7 @@ Because no prompt is available, the ControlNet encoder will "guess" what is in t
 
 ![p](github_page/uc4.png)
 
-Without prompt, the HED seems good at generating images look like paintings:
+Without prompt, the HED seems good at generating images look like paintings when the control strength is relatively low:
 
 ![p](github_page/uc6.png)
 
