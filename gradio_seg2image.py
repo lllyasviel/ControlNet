@@ -12,7 +12,7 @@ from pytorch_lightning import seed_everything
 from annotator.util import resize_image, HWC3
 from annotator.uniformer import UniformerDetector
 from cldm.model import create_model, load_state_dict
-from ldm.models.diffusion.ddim import DDIMSampler
+from cldm.ddim_hacked import DDIMSampler
 
 
 apply_uniformer = UniformerDetector()
@@ -44,7 +44,7 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
             model.low_vram_shift(is_diffusing=False)
 
         cond = {"c_concat": [control], "c_crossattn": [model.get_learned_conditioning([prompt + ', ' + a_prompt] * num_samples)]}
-        un_cond = {"c_concat": [torch.zeros_like(control) if guess_mode else control], "c_crossattn": [model.get_learned_conditioning([n_prompt] * num_samples)]}
+        un_cond = {"c_concat": None if guess_mode else [control], "c_crossattn": [model.get_learned_conditioning([n_prompt] * num_samples)]}
         shape = (4, H // 8, W // 8)
 
         if config.save_memory:
