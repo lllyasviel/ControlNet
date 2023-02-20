@@ -216,6 +216,8 @@ In this mode, you can just remove all prompts, and then the ControlNet encoder w
 
 **No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra captioners.**
 
+This task is the most difficult one among all tasks in this work.
+
 Feel free to reproduce the below examples using the parameters in the screenshots.
 
 For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
