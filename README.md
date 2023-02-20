@@ -208,6 +208,34 @@ This model is not available right now. We need to evaluate the potential risks b
 
 ![p](github_page/p21.png)
 
+# Guess Mode (No Prompt Mode)
+
+The "guess mode" will completely unleash all the power of the very powerful ControlNet encoder. 
+
+In this mode, you can just remove all prompts, and then the ControlNet encoder will recognize the content of the input control map, like depth map, edge map, scribbles, etc.
+
+**No prompts. No negative prompts.** 
+
+Feel free to reproduce the below examples using the parameters in the screenshots.
+
+For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
+
+Besides, if you write a script to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a STOA pipeline for fully automatic conditional image generating.
+
+![p](github_page/uc2.png)
+
+Note that the below example is 768×768.
+
+![p](github_page/uc1.png)
+
+By tuning the parameters, you can get some very intereting results like below:
+
+![p](github_page/uc3.png)
+
+Because no prompt is available, the ControlNet encoder will "guess" what is in the control map. Sometimes the guess result is really interesting. Because diffusion algorithm can essentially give multiple results, the ControlNet seems able to give multiple guesses, like this:
+
+![p](github_page/uc4.png)
+
 # Annotate Your Own Data
 
 We provide simple python scripts to process images.
