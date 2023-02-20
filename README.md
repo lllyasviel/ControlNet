@@ -263,7 +263,7 @@ As you can see below, because **non-prompted mode is extremely difficult**, even
 
 Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will try harder to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
 
-ControlNet's ability to comprehend the content in the control images is the strongest evidence why we need a deep and powerful encoder - because it is deep and powerful.
+ControlNet's ability to comprehend the content in the control images is the strongest evidence why we need a deep and powerful encoder.
 
 # Annotate Your Own Data
 
