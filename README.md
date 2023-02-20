@@ -236,9 +236,11 @@ Besides, if you write a script to generate image captions from the "guess mode" 
 
 ![p](github_page/uc2a.png)
 
+**No prompts. No "positive" prompts. No "negative" prompts.**
+
 ![p](github_page/uc2b.png)
 
-Note that the below example is 768×768.
+Note that the below example is 768×768. **No prompts. No "positive" prompts. No "negative" prompts.**
 
 ![p](github_page/uc1.png)
 
