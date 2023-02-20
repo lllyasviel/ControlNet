@@ -51,7 +51,7 @@ All test images can be found at the folder "test_imgs".
 
 ### News
 
-2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-mode-non-prompt-mode).
+2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
 
 2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
 
@@ -211,6 +211,8 @@ This model is not available right now. We need to evaluate the potential risks b
 ![p](github_page/p21.png)
 
 # Guess Mode / Non-Prompt Mode
+
+<a id="guess-anchor"></a>
 
 The "guess mode" (or called non-prompt mode) will completely unleash all the power of the very powerful ControlNet encoder. 
 
