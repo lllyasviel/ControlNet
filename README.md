@@ -244,7 +244,7 @@ Without prompt, the HED seems good at generating images look like paintings when
 
 ![p](github_page/uc6.png)
 
-As you can see below, because **non-prompted** mode is extremely difficult, even the very deep ControlNet may also generate failure cases. (In the example below, the right-bottom one seem ok.) Because of this, the non-prompted mode seems a nice metric to test the capability of different encoder-based methods to control stable diffusion.
+As you can see below, because **non-prompted** mode is extremely difficult, even the very deep ControlNet may also generate failure cases. (In the example below, the right-bottom one seems ok while others looks meh.) Because of this, the non-prompted mode seems a nice metric to test the capability of different encoder-based methods to control stable diffusion.
 
 ![p](github_page/uc7.png)
 
