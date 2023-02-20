@@ -214,7 +214,7 @@ The "guess mode" will completely unleash all the power of the very powerful Cont
 
 In this mode, you can just remove all prompts, and then the ControlNet encoder will recognize the content of the input control map, like depth map, edge map, scribbles, etc.
 
-**No prompts. No negative prompts.** 
+**No prompts. No "positive" prompts. No "negative" prompts.** 
 
 Feel free to reproduce the below examples using the parameters in the screenshots.
 
