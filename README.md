@@ -210,9 +210,9 @@ This model is not available right now. We need to evaluate the potential risks b
 
 ![p](github_page/p21.png)
 
-# Guess Mode / Non-Prompt Mode
-
 <a id="guess-anchor"></a>
+
+# Guess Mode / Non-Prompt Mode
 
 The "guess mode" (or called non-prompt mode) will completely unleash all the power of the very powerful ControlNet encoder. 
 
