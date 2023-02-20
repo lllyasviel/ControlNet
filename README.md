@@ -212,6 +212,8 @@ This model is not available right now. We need to evaluate the potential risks b
 
 The "guess mode" (or called non-prompt mode) will completely unleash all the power of the very powerful ControlNet encoder. 
 
+You need to manually check the "Guess Mode" toggle to enable this mode.
+
 In this mode, you can just remove all prompts, and then the ControlNet encoder will recognize the content of the input control map, like depth map, edge map, scribbles, etc.
 
 **No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra captioners.**
