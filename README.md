@@ -214,7 +214,7 @@ The "guess mode" (or called non-prompt mode) will completely unleash all the pow
 
 In this mode, you can just remove all prompts, and then the ControlNet encoder will recognize the content of the input control map, like depth map, edge map, scribbles, etc.
 
-**No prompts. No "positive" prompts. No "negative" prompts.** 
+**No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra captioners.**
 
 Feel free to reproduce the below examples using the parameters in the screenshots.
 
