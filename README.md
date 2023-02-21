@@ -218,21 +218,17 @@ The "guess mode" (or called non-prompt mode) will completely unleash all the pow
 
 You need to manually check the "Guess Mode" toggle to enable this mode.
 
-In this mode, you can just remove all prompts, and then the ControlNet encoder will recognize the content of the input control map, like depth map, edge map, scribbles, etc.
+In this mode, the ControlNet encoder will try best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even when you remove all prompts.
 
 **No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra caption detector.**
 
 **Let's play some really harder game!**
 
-This task is the most difficult one among all tasks in this work.
-
-This mode is very suitable for comparing different methods to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between different methods will be **very salient**.
-
-Feel free to reproduce the below examples using the parameters in the screenshots.
+This mode is very suitable for comparing different methods to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between different methods will be **very big**.
 
 For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
 
-Besides, if you write a script to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
+Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
 
 ![p](github_page/uc2a.png)
 
@@ -256,14 +252,7 @@ Without prompt, the HED seems good at generating images look like paintings when
 
 ![p](github_page/uc6.png)
 
-As you can see below, because **non-prompted mode is extremely difficult**, even the very deep ControlNet may also generate failure cases. (In the example below, the right-bottom one seems ok while others look meh.) Because of this, the non-prompted mode seems a nice metric to test the capability of different encoder-based methods to control stable diffusion.
-
-**No prompts. No "positive" prompts. No "negative" prompts.**
-![p](github_page/uc7.png)
-
-Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will try harder to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
-
-ControlNet's ability to comprehend the content in the control images is the strongest evidence why we need a deep and powerful encoder.
+Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will "try harder" to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
 
 # Annotate Your Own Data
 
