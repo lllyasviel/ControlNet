@@ -259,7 +259,7 @@ Also, if your dataset is large, you may want to end the training with a few thou
 
 Also, if you unlock some original layers, you may want a lower learning rate, like 2e-6.
 
-## Other Considerations: the sudden converge phenomenon and gradient accumulation
+## More Consideration: Sudden Converge Phenomenon and Gradient Accumulation
 
 ![img](../github_page/ex1.jpg)
 
