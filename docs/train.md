@@ -263,6 +263,8 @@ Also, if you unlock some original layers, you may want a lower learning rate, li
 
 ![img](../github_page/ex1.jpg)
 
-Because we use zero convolutions, the SD should always be able to predict meaningful images. You will always find that at some iterations, the model "suddenly" be able to fit some training conditions. This means that you will get a basically usable model at about 3k to 7k steps (future training will improve it, but that model after the first "sudden converge" should be basically functional).
+Because we use zero convolutions, the SD should always be able to predict meaningful images. (If it cannot, the training has already failed.)
+
+You will always find that at some iterations, the model "suddenly" be able to fit some training conditions. This means that you will get a basically usable model at about 3k to 7k steps (future training will improve it, but that model after the first "sudden converge" should be basically functional).
 
 Note that 3k to 7k steps is not very large, and you should consider larger batch size rather than more training steps. If you can observe the fitting at 3k step, rather than train it with 300k steps, a better idea is to use 100× gradient accumulation to train that 3k steps with 100× batch size. Note that perhaps we should not do this *too* extremely, but you should consider that, since "sudden converge" will always happen at some point, getting a better converge is more important.
