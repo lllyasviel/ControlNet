@@ -275,15 +275,13 @@ You need to manually check the "Guess Mode" toggle to enable this mode.
 
 In this mode, the ControlNet encoder will try best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even when you remove all prompts.
 
+**Let's play some really harder games!**
+
 **No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra caption detector.**
 
-**Let's play some really harder game!**
-
-This mode is very suitable for comparing different methods to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between different methods will be **very big**.
+This mode is well-suited for comparing recent various projects to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between recent projects will be **very big**.
 
 For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
-
-Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
 
 ![p](github_page/uc2a.png)
 
@@ -308,6 +306,8 @@ Without prompt, the HED seems good at generating images look like paintings when
 ![p](github_page/uc6.png)
 
 Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will "try harder" to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
+
+Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
 
 # Annotate Your Own Data
 
