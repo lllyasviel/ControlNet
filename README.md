@@ -51,6 +51,8 @@ All test images can be found at the folder "test_imgs".
 
 ### News
 
+2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
+
 2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
 
 2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s) or if you want larger batch size.
@@ -207,6 +209,50 @@ We also trained a relatively simple ControlNet for anime line drawings. This too
 This model is not available right now. We need to evaluate the potential risks before releasing this model. Nevertheless, you may be interested in [transferring the ControlNet to any community model](https://github.com/lllyasviel/ControlNet/discussions/12).
 
 ![p](github_page/p21.png)
+
+<a id="guess-anchor"></a>
+
+# Guess Mode / Non-Prompt Mode
+
+The "guess mode" (or called non-prompt mode) will completely unleash all the power of the very powerful ControlNet encoder. 
+
+You need to manually check the "Guess Mode" toggle to enable this mode.
+
+In this mode, the ControlNet encoder will try best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even when you remove all prompts.
+
+**No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra caption detector.**
+
+**Let's play some really harder game!**
+
+This mode is very suitable for comparing different methods to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between different methods will be **very big**.
+
+For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
+
+Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
+
+![p](github_page/uc2a.png)
+
+**No prompts. No "positive" prompts. No "negative" prompts.**
+
+![p](github_page/uc2b.png)
+
+Note that the below example is 768×768. **No prompts. No "positive" prompts. No "negative" prompts.**
+
+![p](github_page/uc1.png)
+
+By tuning the parameters, you can get some very intereting results like below:
+
+![p](github_page/uc3.png)
+
+Because no prompt is available, the ControlNet encoder will "guess" what is in the control map. Sometimes the guess result is really interesting. Because diffusion algorithm can essentially give multiple results, the ControlNet seems able to give multiple guesses, like this:
+
+![p](github_page/uc4.png)
+
+Without prompt, the HED seems good at generating images look like paintings when the control strength is relatively low:
+
+![p](github_page/uc6.png)
+
+Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will "try harder" to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
 
 # Annotate Your Own Data
 

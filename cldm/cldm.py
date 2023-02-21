@@ -31,10 +31,11 @@ class ControlledUnetModel(UNetModel):
                 hs.append(h)
             h = self.middle_block(h, emb, context)
 
-        h += control.pop()
+        if control is not None:
+            h += control.pop()
 
         for i, module in enumerate(self.output_blocks):
-            if only_mid_control:
+            if only_mid_control or control is None:
                 h = torch.cat([h, hs.pop()], dim=1)
             else:
                 h = torch.cat([h, hs.pop() + control.pop()], dim=1)
@@ -327,13 +328,15 @@ class ControlLDM(LatentDiffusion):
     def apply_model(self, x_noisy, t, cond, *args, **kwargs):
         assert isinstance(cond, dict)
         diffusion_model = self.model.diffusion_model
+
         cond_txt = torch.cat(cond['c_crossattn'], 1)
-        cond_hint = torch.cat(cond['c_concat'], 1)
 
-        control = self.control_model(x=x_noisy, hint=cond_hint, timesteps=t, context=cond_txt)
-        control = [c * scale for c, scale in zip(control, self.control_scales)]
-
-        eps = diffusion_model(x=x_noisy, timesteps=t, context=cond_txt, control=control, only_mid_control=self.only_mid_control)
+        if cond['c_concat'] is None:
+            eps = diffusion_model(x=x_noisy, timesteps=t, context=cond_txt, control=None, only_mid_control=self.only_mid_control)
+        else:
+            control = self.control_model(x=x_noisy, hint=torch.cat(cond['c_concat'], 1), timesteps=t, context=cond_txt)
+            control = [c * scale for c, scale in zip(control, self.control_scales)]
+            eps = diffusion_model(x=x_noisy, timesteps=t, context=cond_txt, control=control, only_mid_control=self.only_mid_control)
 
         return eps
 
