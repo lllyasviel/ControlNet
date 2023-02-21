@@ -224,7 +224,7 @@ In this mode, the ControlNet encoder will try best to recognize the content of t
 
 **No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra caption detector.**
 
-This mode is well-suited for comparing recent various projects to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between recent various research projects will be **VERY BIG**.
+This mode is well-suited for comparing recent various projects to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between various recent research projects will be **VERY BIG**.
 
 For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
 
