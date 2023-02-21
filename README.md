@@ -254,7 +254,7 @@ Note that in the guess mode, you will still be able to input prompts. The only d
 
 Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
 
-# Use ControlNet in Any Community Model
+# Use ControlNet in Any Community Model (SD1.X)
 
 This is an experimental feature.
 
