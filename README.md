@@ -36,6 +36,14 @@ By repeating the above simple structure 14 times, we can control stable diffusio
 
 Note that the way we connect layers is computational efficient. The original SD encoder does not need to store gradients (the locked original SD Encoder Block 1234 and Middle). The required GPU memory is not much larger than original SD, although many layers are added. Great!
 
+# Features & News
+
+2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
+
+2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
+
+2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s) or if you want larger batch size.
+
 # Production-Ready Pretrained Models
 
 First create a new conda environment
@@ -48,14 +56,6 @@ All models and detectors can be downloaded from [our Hugging Face page](https://
 We provide 9 Gradio apps with these models.
 
 All test images can be found at the folder "test_imgs".
-
-### News
-
-2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
-
-2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
-
-2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s) or if you want larger batch size.
 
 ## ControlNet with Canny Edge
 
