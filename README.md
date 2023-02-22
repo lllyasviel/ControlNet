@@ -230,11 +230,11 @@ For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
 
 ![p](github_page/uc2a.png)
 
-**No prompts. No "positive" prompts. No "negative" prompts.**
+No prompts:
 
 ![p](github_page/uc2b.png)
 
-Note that the below example is 768×768. **No prompts. No "positive" prompts. No "negative" prompts.**
+Note that the below example is 768×768. No prompts. No "positive" prompts. No "negative" prompts.
 
 ![p](github_page/uc1.png)
 
@@ -254,7 +254,7 @@ The Guess Mode is also supported in [WebUI Plugin](https://github.com/Mikubill/s
 
 ![p](github_page/uci1.png)
 
-**No prompts. No "positive" prompts. No "negative" prompts. Default WebUI parameters. Seed is 12345.** Image is from the demo of [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter/blob/main/examples/sketch/human.png).
+No prompts. Default WebUI parameters. Pure random results with the seed being 12345.
 
 ![p](github_page/uci2.png)
 
