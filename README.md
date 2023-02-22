@@ -260,6 +260,18 @@ Note that in the guess mode, you will still be able to input prompts. The only d
 
 Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
 
+# Combining Multiple ControlNets
+
+ControlNets are composable: more than one ControlNet can be easily composed to multi-condition control.
+
+Right now this feature is in experimental stage in the [Mikubill' A1111 Webui Plugin](https://github.com/Mikubill/sd-webui-controlnet):
+
+![p](github_page/multi2.png)
+
+![p](github_page/multi.png)
+
+**Keep in mind that as long as the models are controlling the same SD, the "boundary" between research projects does not even exist: ControlNets can work together with [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter) in this plugin.**
+
 # Use ControlNet in Any Community Model (SD1.X)
 
 This is an experimental feature.
