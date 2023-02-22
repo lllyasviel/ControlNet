@@ -270,7 +270,7 @@ Right now this feature is in experimental stage in the [Mikubill' A1111 Webui Pl
 
 ![p](github_page/multi.png)
 
-Keep in mind that as long as the models are controlling the same SD, the "boundary" between research projects does not even exist: ControlNets can work together with [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter) in this plugin.
+Keep in mind that as long as the models are controlling the same SD, the "boundary" between research projects does not even exist: ControlNets can work together with [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter) to achieve "multi-condition control" in this plugin.
 
 # Use ControlNet in Any Community Model (SD1.X)
 
