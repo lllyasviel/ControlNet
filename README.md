@@ -250,6 +250,14 @@ Without prompt, the HED seems good at generating images look like paintings when
 
 ![p](github_page/uc6.png)
 
+The Guess Mode is also supported in [WebUI Plugin](https://github.com/Mikubill/sd-webui-controlnet):
+
+![p](github_page/uci1.png)
+
+**No prompts. No "positive" prompts. No "negative" prompts. Default WebUI parameters. Seed is 12345.** Image is from the demo of [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter)
+
+![p](github_page/uci2.png)
+
 Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will "try harder" to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
 
 Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
