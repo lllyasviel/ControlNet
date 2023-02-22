@@ -254,7 +254,7 @@ The Guess Mode is also supported in [WebUI Plugin](https://github.com/Mikubill/s
 
 ![p](github_page/uci1.png)
 
-**No prompts. No "positive" prompts. No "negative" prompts. Default WebUI parameters. Seed is 12345.** Image is from the demo of [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter)
+**No prompts. No "positive" prompts. No "negative" prompts. Default WebUI parameters. Seed is 12345.** Image is from the demo of [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter/blob/main/examples/sketch/human.png)
 
 ![p](github_page/uci2.png)
 
