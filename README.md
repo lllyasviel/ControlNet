@@ -256,6 +256,14 @@ No prompts. Default WebUI parameters. Pure random results with the seed being 12
 
 ![p](github_page/uci2.png)
 
+Below is another challenging example:
+
+![p](github_page/uci3.png)
+
+No prompts. Default WebUI parameters. Pure random results with the seed being 12345.
+
+![p](github_page/uci4.png)
+
 Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will "try harder" to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
 
 Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
