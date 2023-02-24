@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout SCM') {
             steps {
                 checkout([$class: 'GitSCM',
-                    branches: [[name: '*/i192011']],
+                    branches: [[name: '*/i192003']],
                     userRemoteConfigs: [[url: 'https://github.com/hmzakhalid/ControlNet.git']]])
             }
         }
