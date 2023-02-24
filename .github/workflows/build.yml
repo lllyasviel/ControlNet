@@ -2,18 +2,20 @@ name: Python CI
 
 on: 
   push:
-    branches: [main]
+    branches: [i192003]
   pull_request:
-    branches: [main]
+    branches: [i192003]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Repository
+    - uses: actions/checkout@v3
+
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.x
 
@@ -21,4 +23,7 @@ jobs:
       run: |
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: Format with black
+      uses: datadog/action-py-black-formatter@v2.1
 
