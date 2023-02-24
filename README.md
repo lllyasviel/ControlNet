@@ -252,7 +252,7 @@ The Guess Mode is also supported in [WebUI Plugin](https://github.com/Mikubill/s
 
 ![p](github_page/uci1.png)
 
-No prompts. Default WebUI parameters. Pure random results with the seed being 12345.
+No prompts. Default WebUI parameters. Pure random results with the seed being 12345. Input scribble is in "test_imgs" folder to reproduce.
 
 ![p](github_page/uci2.png)
 
@@ -260,7 +260,7 @@ Below is another challenging example:
 
 ![p](github_page/uci3.png)
 
-No prompts. Default WebUI parameters. Pure random results with the seed being 12345.
+No prompts. Default WebUI parameters. Pure random results with the seed being 12345. Input scribble is in "test_imgs" folder to reproduce.
 
 ![p](github_page/uci4.png)
 
