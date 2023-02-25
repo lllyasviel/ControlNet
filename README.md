@@ -48,7 +48,14 @@ Note that the way we connect layers is computational efficient. The original SD 
 
 First create a new conda environment
 
+CUDA, CPU
+
     conda env create -f environment.yaml
+    conda activate control
+
+MPS
+
+    conda env create -f environment-mps.yaml
     conda activate control
 
 All models and detectors can be downloaded from [our Hugging Face page](https://huggingface.co/lllyasviel/ControlNet). Make sure that SD models are put in "ControlNet/models" and detectors are put in "ControlNet/annotator/ckpts". Make sure that you download all necessary pretrained weights and detector models from that Hugging Face page, including HED edge detection model, Midas depth estimation model, Openpose, and so on. 
