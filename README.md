@@ -36,6 +36,14 @@ By repeating the above simple structure 14 times, we can control stable diffusio
 
 Note that the way we connect layers is computational efficient. The original SD encoder does not need to store gradients (the locked original SD Encoder Block 1234 and Middle). The required GPU memory is not much larger than original SD, although many layers are added. Great!
 
+# Features & News
+
+2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
+
+2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
+
+2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s) or if you want larger batch size.
+
 # Production-Ready Pretrained Models
 
 First create a new conda environment
@@ -48,14 +56,6 @@ All models and detectors can be downloaded from [our Hugging Face page](https://
 We provide 9 Gradio apps with these models.
 
 All test images can be found at the folder "test_imgs".
-
-### News
-
-2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
-
-2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
-
-2023/02/11 - [Low VRAM mode](docs/low_vram.md) is added. Please use this mode if you are using 8GB GPU(s) or if you want larger batch size.
 
 ## ControlNet with Canny Edge
 
@@ -273,23 +273,21 @@ The "guess mode" (or called non-prompt mode) will completely unleash all the pow
 
 You need to manually check the "Guess Mode" toggle to enable this mode.
 
-In this mode, the ControlNet encoder will try best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even when you remove all prompts.
+In this mode, the ControlNet encoder will try best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even if you remove all prompts.
 
-**Let's play some really harder games!**
+**Let's have fun with some very challenging experimental settings!**
 
-**No prompts. No "positive" prompts. No "negative" prompts. One single diffusion loop. No extra caption detector.**
-
-This mode is well-suited for comparing recent various projects to control stable diffusion, because the non-prompted generating task is significantly more difficult than prompted task. In this mode, the performance difference between recent projects will be **very big**.
+**No prompts. No "positive" prompts. No "negative" prompts. No extra caption detector. One single diffusion loop.**
 
 For this mode, we recommend to use 50 steps and guidance scale between 3 and 5.
 
 ![p](github_page/uc2a.png)
 
-**No prompts. No "positive" prompts. No "negative" prompts.**
+No prompts:
 
 ![p](github_page/uc2b.png)
 
-Note that the below example is 768×768. **No prompts. No "positive" prompts. No "negative" prompts.**
+Note that the below example is 768×768. No prompts. No "positive" prompts. No "negative" prompts.
 
 ![p](github_page/uc1.png)
 
@@ -305,9 +303,45 @@ Without prompt, the HED seems good at generating images look like paintings when
 
 ![p](github_page/uc6.png)
 
+The Guess Mode is also supported in [WebUI Plugin](https://github.com/Mikubill/sd-webui-controlnet):
+
+![p](github_page/uci1.png)
+
+No prompts. Default WebUI parameters. Pure random results with the seed being 12345. Standard SD1.5. Input scribble is in "test_imgs" folder to reproduce.
+
+![p](github_page/uci2.png)
+
+Below is another challenging example:
+
+![p](github_page/uci3.png)
+
+No prompts. Default WebUI parameters. Pure random results with the seed being 12345. Standard SD1.5. Input scribble is in "test_imgs" folder to reproduce.
+
+![p](github_page/uci4.png)
+
 Note that in the guess mode, you will still be able to input prompts. The only difference is that the model will "try harder" to guess what is in the control map even if you do not provide the prompt. Just try it yourself!
 
 Besides, if you write some scripts (like BLIP) to generate image captions from the "guess mode" images, and then use the generated captions as prompts to diffuse again, you will get a SOTA pipeline for fully automatic conditional image generating.
+
+# Combining Multiple ControlNets
+
+ControlNets are composable: more than one ControlNet can be easily composed to multi-condition control.
+
+Right now this feature is in experimental stage in the [Mikubill' A1111 Webui Plugin](https://github.com/Mikubill/sd-webui-controlnet):
+
+![p](github_page/multi2.png)
+
+![p](github_page/multi.png)
+
+Keep in mind that as long as the models are controlling the same SD, the "boundary" between research projects does not even exist: ControlNets can work together with [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter) to achieve "multi-condition control" in this plugin.
+
+# Use ControlNet in Any Community Model (SD1.X)
+
+This is an experimental feature.
+
+[See the steps here](https://github.com/lllyasviel/ControlNet/discussions/12).
+
+Or you may want to use the [Mikubill' A1111 Webui Plugin](https://github.com/Mikubill/sd-webui-controlnet) which is plug-and-play and does not need manual merging.
 
 # Annotate Your Own Data
 
@@ -326,6 +360,8 @@ Training a ControlNet is as easy as (or even easier than) training a simple pix2
 Special Thank to the great project - [Mikubill' A1111 Webui Plugin](https://github.com/Mikubill/sd-webui-controlnet) !
 
 We also thank Hysts for making [Hugging Face Space](https://huggingface.co/spaces/hysts/ControlNet) as well as more than 65 models in that amazing [Colab list](https://github.com/camenduru/controlnet-colab)! 
+
+Thank haofanwang for making [ControlNet-for-Diffusers](https://github.com/haofanwang/ControlNet-for-Diffusers)!
 
 We also thank all authors for making Controlnet DEMOs, including but not limited to [fffiloni](https://huggingface.co/spaces/fffiloni/ControlNet-Video), [other-model](https://huggingface.co/spaces/hysts/ControlNet-with-other-models), [ThereforeGames](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/7784), [RamAnanth1](https://huggingface.co/spaces/RamAnanth1/ControlNet), etc!
 
