@@ -38,6 +38,8 @@ Note that the way we connect layers is computational efficient. The original SD 
 
 # Features & News
 
+2023/02/26 - We released a blog - [Ablation Study: Why ControlNets use a deep encoder? What if it was lighter? Or even an MLP?](https://github.com/lllyasviel/ControlNet/discussions/173)
+
 2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
 
 2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
@@ -215,6 +217,8 @@ This model is not available right now. We need to evaluate the potential risks b
 # Guess Mode / Non-Prompt Mode
 
 The "guess mode" (or called non-prompt mode) will completely unleash all the power of the very powerful ControlNet encoder. 
+
+See also the blog - [Ablation Study: Why ControlNets use a deep encoder? What if it was lighter? Or even an MLP?](https://github.com/lllyasviel/ControlNet/discussions/173)
 
 You need to manually check the "Guess Mode" toggle to enable this mode.
 
