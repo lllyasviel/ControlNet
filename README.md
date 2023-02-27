@@ -38,6 +38,8 @@ Note that the way we connect layers is computational efficient. The original SD 
 
 # Features & News
 
+2023/02/26 - We released a blog - [Ablation Study: Why ControlNets use deep encoder? What if it was lighter? Or even an MLP?](https://github.com/lllyasviel/ControlNet/discussions/173)
+
 2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
 
 2023/02/12 - Now you can play with any community model by [Transferring the ControlNet](https://github.com/lllyasviel/ControlNet/discussions/12).
@@ -133,7 +135,9 @@ Stable Diffusion 1.5 + ControlNet (using Scribbles)
     python gradio_scribble2image.py
 
 #### MPS
+
     PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_scribble2image.py
+    
 Note that the UI is based on Gradio, and Gradio is somewhat difficult to customize. Right now you need to draw scribbles outside the UI (using your favorite drawing software, for example, MS Paint) and then import the scribble image to Gradio. 
 
 Prompt: "turtle"
@@ -154,7 +158,7 @@ We actually provide an interactive interface
 
     PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_scribble2image.py
     
-However, because gradio is very [buggy](https://github.com/gradio-app/gradio/issues/3166) and difficult to customize, right now, user need to first set canvas width and heights and then click "Open drawing canvas" to get a drawing area. Please do not upload image to that drawing canvas. Also, the drawing area is very small; it should be bigger. But I failed to find out how to make it larger. Again, gradio is really buggy.
+~~However, because gradio is very [buggy](https://github.com/gradio-app/gradio/issues/3166) and difficult to customize, right now, user need to first set canvas width and heights and then click "Open drawing canvas" to get a drawing area. Please do not upload image to that drawing canvas. Also, the drawing area is very small; it should be bigger. But I failed to find out how to make it larger. Again, gradio is really buggy.~~ (Now fixed, will update asap)
 
 The below dog sketch is drawn by me. Perhaps we should draw a better dog for showcase.
 
@@ -278,6 +282,8 @@ This model is not available right now. We need to evaluate the potential risks b
 
 The "guess mode" (or called non-prompt mode) will completely unleash all the power of the very powerful ControlNet encoder. 
 
+See also the blog - [Ablation Study: Why ControlNets use deep encoder? What if it was lighter? Or even an MLP?](https://github.com/lllyasviel/ControlNet/discussions/173)
+
 You need to manually check the "Guess Mode" toggle to enable this mode.
 
 In this mode, the ControlNet encoder will try best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even if you remove all prompts.
@@ -340,7 +346,7 @@ Right now this feature is in experimental stage in the [Mikubill' A1111 Webui Pl
 
 ![p](github_page/multi.png)
 
-Keep in mind that as long as the models are controlling the same SD, the "boundary" between research projects does not even exist: ControlNets can work together with [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter) to achieve "multi-condition control" in this plugin.
+As long as the models are controlling the same SD, the "boundary" between different research projects does not even exist. This plugin also allows different methods to work together!
 
 # Use ControlNet in Any Community Model (SD1.X)
 
@@ -373,6 +379,8 @@ Thank haofanwang for making [ControlNet-for-Diffusers](https://github.com/haofan
 We also thank all authors for making Controlnet DEMOs, including but not limited to [fffiloni](https://huggingface.co/spaces/fffiloni/ControlNet-Video), [other-model](https://huggingface.co/spaces/hysts/ControlNet-with-other-models), [ThereforeGames](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/7784), [RamAnanth1](https://huggingface.co/spaces/RamAnanth1/ControlNet), etc!
 
 Besides, you may also want to read these amazing related works:
+
+[Composer: Creative and Controllable Image Synthesis with Composable Conditions](https://github.com/damo-vilab/composer): A much bigger model to control diffusion!
 
 [T2I-Adapter: Learning Adapters to Dig out More Controllable Ability for Text-to-Image Diffusion Models](https://github.com/TencentARC/T2I-Adapter): A much smaller model to control stable diffusion!
 
