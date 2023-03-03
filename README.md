@@ -38,6 +38,53 @@ Note that the way we connect layers is computational efficient. The original SD 
 
 # Features & News
 
+2023/03/02 - Diffusers now officially support ControlNet. Check it out [here](https://huggingface.co/docs/diffusers/main/en/api/pipelines/stable_diffusion/controlnet) 🧨 Thanks to [takuma104](https://huggingface.co/takuma104) who led this integration. Below is an example that shows how to use it:
+
+```py
+from diffusers import StableDiffusionControlNetPipeline, ControlNetModel, UniPCMultistepScheduler
+from diffusers.utils import load_image
+import torch
+import cv2
+
+# Load an image to extract Canny edge maps.
+image = load_image(
+    "https://hf.co/datasets/huggingface/documentation-images/resolve/main/diffusers/input_image_vermeer.png"
+)
+
+# Extract Canny edge map.
+image = np.array(image)
+
+low_threshold = 100
+high_threshold = 200
+
+image = cv2.Canny(image, low_threshold, high_threshold)[:, :, None]
+image = np.concatenate([image, image, image], axis=2)
+canny_image = Image.fromarray(image)
+
+# Load a `ControlNetModel` pre-trained on edge maps. Then load the pipeline.
+controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-canny", torch_dtype=torch.float16)
+pipe = StableDiffusionControlNetPipeline.from_pretrained(
+    "runwayml/stable-diffusion-v1-5", controlnet=controlnet, torch_dtype=torch.float16
+)
+
+# Configure the pipeline for speeding things up 🔥
+pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config) # Fast sampler.
+pipe.enable_model_cpu_offload() # Memory optimization
+pipe.enable_xformers_memory_efficient_attention() # Memory optimization
+
+# Generate!
+prompt = "rihanna, best quality, extremely detailed"
+output = pipe(
+    prompt,
+    canny_image,
+    negative_prompt="monochrome, lowres, bad anatomy, worst quality, low quality",
+    num_inference_steps=20,
+)
+```
+
+To know more about all the supported models and other details of `StableDiffusionControlNetPipeline` check out [this blog post](https://huggingface.co/blog/controlnet).
+
+
 2023/02/26 - We released a blog - [Ablation Study: Why ControlNets use deep encoder? What if it was lighter? Or even an MLP?](https://github.com/lllyasviel/ControlNet/discussions/188)
 
 2023/02/20 - Implementation for non-prompt mode released. See also [Guess Mode / Non-Prompt Mode](#guess-anchor).
