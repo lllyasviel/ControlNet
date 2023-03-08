@@ -6,7 +6,7 @@ ControlNet is a neural network structure to control diffusion models by adding e
 
 ![img](github_page/he.png)
 
-It copys the weights of neural network blocks into a "locked" copy and a "trainable" copy. 
+It copies the weights of neural network blocks into a "locked" copy and a "trainable" copy. 
 
 The "trainable" one learns your condition. The "locked" one preserves your model. 
 
@@ -24,7 +24,7 @@ This is also friendly to merge/replacement/offsetting of models/weights/blocks/l
 
 ### FAQ
 
-**Q:** But wait, if the weight of a conv layer is zero, the gradient will also be zero, and the network will not learn anything. Why "zero convolution" works?
+**Q:** But wait, if the weight of a conv layer is zero, the gradient will also be zero, and the network will not learn anything. Why does "zero convolution" work?
 
 **A:** This is not true. [See an explanation here](docs/faq.md).
 
@@ -34,7 +34,7 @@ By repeating the above simple structure 14 times, we can control stable diffusio
 
 ![img](github_page/sd.png)
 
-Note that the way we connect layers is computational efficient. The original SD encoder does not need to store gradients (the locked original SD Encoder Block 1234 and Middle). The required GPU memory is not much larger than original SD, although many layers are added. Great!
+Note that the way we connect layers is computationally efficient. The original SD encoder does not need to store gradients (the locked original SD Encoder Block 1234 and Middle). The required GPU memory is not much larger than original SD, although many layers are added. Great!
 
 # Features & News
 
@@ -180,7 +180,7 @@ Stable Diffusion 1.5 + ControlNet (using depth map)
 
 Great! Now SD 1.5 also have a depth control. FINALLY. So many possibilities (considering SD1.5 has much more community models than SD2).
 
-Note that different from Stability's model, the ControlNet receive the full 512×512 depth map, rather than 64×64 depth. Note that Stability's SD2 depth model use 64*64 depth maps. This means that the ControlNet will preserve more details in the depth map.
+Note that different from Stability's model, the ControlNet receives the full 512×512 depth map, rather than 64×64 depth. Note that Stability's SD2 depth model uses 64*64 depth maps. This means that the ControlNet will preserve more details in the depth map.
 
 This is always a strength because if users do not want to preserve more details, they can simply use another SD to post-process an i2i. But if they want to preserve more details, ControlNet becomes their only choice. Again, SD2 uses 64×64 depth, we use 512×512.
 
@@ -193,7 +193,7 @@ Stable Diffusion 1.5 + ControlNet (using normal map)
 
     python gradio_normal2image.py
 
-This model use normal map. Rightnow in the APP, the normal is computed from the midas depth map and a user threshold (to determine how many area is background with identity normal face to viewer, tune the "Normal background threshold" in the gradio app to get a feeling).
+This model uses a normal map. Right now in the APP, the normal is computed from the midas depth map and a user threshold (to determine how many area is background with identity normal face to viewer, tune the "Normal background threshold" in the gradio app to get a feeling).
 
 Prompt: "Cute toy"
 ![p](github_page/p17.png)
@@ -208,7 +208,7 @@ Prompt: "Plaster statue of Abraham Lincoln"
 
 ## ControlNet with Anime Line Drawing
 
-We also trained a relatively simple ControlNet for anime line drawings. This tool may be useful for artistic creations. (Although the image details in the results is a bit modified, since it still diffuse latent images.)
+We also trained a relatively simple ControlNet for anime line drawings. This tool may be useful for artistic creations. (Although the image details in the results are a bit modified, since it still diffuses latent images.)
 
 This model is not available right now. We need to evaluate the potential risks before releasing this model. Nevertheless, you may be interested in [transferring the ControlNet to any community model](https://github.com/lllyasviel/ControlNet/discussions/12).
 
