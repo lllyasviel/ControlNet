@@ -63,6 +63,17 @@ We provide 9 Gradio apps with these models.
 
 All test images can be found at the folder "test_imgs".
 
+## Run with Docker
+
+Alternatively, build and run docker image after models have been downloaded to `ControlNet/models`.
+
+    bash scripts/build_docker.sh        # build docker image to set up environment
+    bash scripts/run_docker.sh -p 8000  # run docker with an external port 0.0.0.0:8000 exposed
+    
+Example run gradio_scribble2image.py
+    
+    python gradio_scribble2image.py     # gradio app will be hosted at localhost:8000
+
 ## ControlNet with Canny Edge
 
 Stable Diffusion 1.5 + ControlNet (using simple Canny edge detection)
