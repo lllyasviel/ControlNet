@@ -719,12 +719,12 @@ if __name__ == '__main__':
 		img_lq_bicubic = albumentations.SmallestMaxSize(max_size=h, interpolation=cv2.INTER_CUBIC)(image=img)["image"]
 		print(img_lq.shape)
 		print("bicubic", img_lq_bicubic.shape)
-		print(img_hq.shape)
+		print(img_lq.shape)
 		lq_nearest = cv2.resize(util.single2uint(img_lq), (int(sf * img_lq.shape[1]), int(sf * img_lq.shape[0])),
 		                        interpolation=0)
 		lq_bicubic_nearest = cv2.resize(util.single2uint(img_lq_bicubic), (int(sf * img_lq.shape[1]), int(sf * img_lq.shape[0])),
 		                        interpolation=0)
-		img_concat = np.concatenate([lq_bicubic_nearest, lq_nearest, util.single2uint(img_hq)], axis=1)
+		img_concat = np.concatenate([lq_bicubic_nearest, lq_nearest, util.single2uint(img_lq)], axis=1)
 		util.imsave(img_concat, str(i) + '.png')
 
 
