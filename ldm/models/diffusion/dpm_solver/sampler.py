@@ -11,16 +11,20 @@ MODEL_TYPES = {
 
 
 class DPMSolverSampler(object):
-    def __init__(self, model, **kwargs):
+    def __init__(self, model, device, **kwargs):
         super().__init__()
         self.model = model
         to_torch = lambda x: x.clone().detach().to(torch.float32).to(model.device)
         self.register_buffer('alphas_cumprod', to_torch(model.alphas_cumprod))
+        self.device = device
 
     def register_buffer(self, name, attr):
         if type(attr) == torch.Tensor:
-            if attr.device != torch.device("cuda"):
-                attr = attr.to(torch.device("cuda"))
+            if attr.device != torch.device(self.device):
+                if str(self.device) == 'mps':
+                    attr = attr.to(self.device, torch.float32)
+                else:
+                    attr = attr.to(self.device)
         setattr(self, name, attr)
 
     @torch.no_grad()

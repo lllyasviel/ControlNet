@@ -54,7 +54,14 @@ Note that the way we connect layers is computational efficient. The original SD 
 
 First create a new conda environment
 
+CUDA, CPU
+
     conda env create -f environment.yaml
+    conda activate control
+
+MPS
+
+    conda env create -f environment-mps.yaml
     conda activate control
 
 All models and detectors can be downloaded from [our Hugging Face page](https://huggingface.co/lllyasviel/ControlNet). Make sure that SD models are put in "ControlNet/models" and detectors are put in "ControlNet/annotator/ckpts". Make sure that you download all necessary pretrained weights and detector models from that Hugging Face page, including HED edge detection model, Midas depth estimation model, Openpose, and so on. 
@@ -67,7 +74,13 @@ All test images can be found at the folder "test_imgs".
 
 Stable Diffusion 1.5 + ControlNet (using simple Canny edge detection)
 
+##### CUDA, CPU
+
     python gradio_canny2image.py
+
+##### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_canny2image.py
 
 The Gradio app also allows you to change the Canny edge thresholds. Just try it for more details.
 
@@ -81,8 +94,14 @@ Prompt: "cute dog"
 
 Stable Diffusion 1.5 + ControlNet (using simple M-LSD straight line detection)
 
+##### CUDA, CPU
+
     python gradio_hough2image.py
 
+#### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_hough2image.py
+    
 The Gradio app also allows you to change the M-LSD thresholds. Just try it for more details.
 
 Prompt: "room"
@@ -95,8 +114,14 @@ Prompt: "building"
 
 Stable Diffusion 1.5 + ControlNet (using soft HED Boundary)
 
+#### CUDA, CPU
+
     python gradio_hed2image.py
 
+#### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_hed2image.py
+    
 The soft HED Boundary will preserve many details in input images, making this app suitable for recoloring and stylizing. Just try it for more details.
 
 Prompt: "oil painting of handsome old man, masterpiece"
@@ -109,8 +134,14 @@ Prompt: "Cyberpunk robot"
 
 Stable Diffusion 1.5 + ControlNet (using Scribbles)
 
+#### CUDA, CPU
+
     python gradio_scribble2image.py
 
+#### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_scribble2image.py
+    
 Note that the UI is based on Gradio, and Gradio is somewhat difficult to customize. Right now you need to draw scribbles outside the UI (using your favorite drawing software, for example, MS Paint) and then import the scribble image to Gradio. 
 
 Prompt: "turtle"
@@ -123,8 +154,14 @@ Prompt: "hot air balloon"
 
 We actually provide an interactive interface
 
+#### CUDA, CPU
+
     python gradio_scribble2image_interactive.py
 
+#### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_scribble2image.py
+    
 ~~However, because gradio is very [buggy](https://github.com/gradio-app/gradio/issues/3166) and difficult to customize, right now, user need to first set canvas width and heights and then click "Open drawing canvas" to get a drawing area. Please do not upload image to that drawing canvas. Also, the drawing area is very small; it should be bigger. But I failed to find out how to make it larger. Again, gradio is really buggy.~~ (Now fixed, will update asap)
 
 The below dog sketch is drawn by me. Perhaps we should draw a better dog for showcase.
@@ -136,7 +173,13 @@ Prompt: "dog in a room"
 
 Stable Diffusion 1.5 + ControlNet (using fake scribbles)
 
+#### CUDA, CPU
+
     python gradio_fake_scribble2image.py
+
+#### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_fake_scribble2image.py
 
 Sometimes we are lazy, and we do not want to draw scribbles. This script use the exactly same scribble-based model but use a simple algorithm to synthesize scribbles from input images.
 
@@ -150,8 +193,12 @@ Prompt: "shose" (Note that "shose" is a typo; it should be "shoes". But it still
 
 Stable Diffusion 1.5 + ControlNet (using human pose)
 
+#### CUDA, CPU
+
     python gradio_pose2image.py
 
+#### MPS
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_pose2image.py 
 Apparently, this model deserves a better UI to directly manipulate pose skeleton. However, again, Gradio is somewhat difficult to customize. Right now you need to input an image and then the Openpose will detect the pose for you.
 
 Prompt: "Chief in the kitchen"
@@ -164,8 +211,13 @@ Prompt: "An astronaut on the moon"
 
 Stable Diffusion 1.5 + ControlNet (using semantic segmentation)
 
+#### CUDA, CPU
+
     python gradio_seg2image.py
 
+#### MPS
+    Not Supported (Reason:aten::_slow_conv2d_forward is currently not supported by mps.)
+    
 This model use ADE20K's segmentation protocol. Again, this model deserves a better UI to directly draw the segmentations. However, again, Gradio is somewhat difficult to customize. Right now you need to input an image and then a model called Uniformer will detect the segmentations for you. Just try it for more details.
 
 Prompt: "House"
@@ -178,7 +230,13 @@ Prompt: "River"
 
 Stable Diffusion 1.5 + ControlNet (using depth map)
 
+#### CUDA, CPU
+
     python gradio_depth2image.py
+
+### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1  python gradio_depth2image.py
 
 Great! Now SD 1.5 also have a depth control. FINALLY. So many possibilities (considering SD1.5 has much more community models than SD2).
 
@@ -193,8 +251,14 @@ Prompt: "Stormtrooper's lecture"
 
 Stable Diffusion 1.5 + ControlNet (using normal map)
 
+#### CUDA, CPU
+
     python gradio_normal2image.py
 
+#### MPS
+
+    PYTORCH_ENABLE_MPS_FALLBACK=1  python gradio_normal2image.py
+    
 This model use normal map. Rightnow in the APP, the normal is computed from the midas depth map and a user threshold (to determine how many area is background with identity normal face to viewer, tune the "Normal background threshold" in the gradio app to get a feeling).
 
 Prompt: "Cute toy"
