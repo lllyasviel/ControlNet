@@ -35,6 +35,8 @@ COPY environment.yaml "/home/$uname"
 
 # create conda env
 RUN conda init bash \
+    && conda install -n base conda-libmamba-solver \
+    && conda config --set solver libmamba \
     && conda env create -f environment.yaml
 
 # add conda env activation to bashrc
