@@ -34,7 +34,7 @@ docker rm "$def_cont_name" || true
 docker run \
       -ti --rm \
       -p "0.0.0.0:$port:7860" \
-      -v "$PWD/models:/home/user1/models" \
+      -v "$PWD/models:/home/user1/ControlNet/models" \
       --gpus "device=0" \
       --name "$def_cont_name" \
       controlnet:latest

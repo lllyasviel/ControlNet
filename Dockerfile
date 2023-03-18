@@ -10,28 +10,29 @@ RUN apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 # set username inside docker
-ARG uname=user1
+ARG UNAME=user1
+ARG UID=1000
 
-# add user uname as a member of the sudoers group
-RUN useradd -rm --home-dir "/home/$uname" --shell /bin/bash -g root -G sudo -u 1001 "$uname"
+# add user UNAME as a member of the sudoers group
+RUN useradd -rm --home-dir "/home/$UNAME" --shell /bin/bash -g root -G sudo -u "$UID" "$UNAME"
 # activate user
-USER "$uname"
-WORKDIR "/home/$uname"
+USER "$UNAME"
+WORKDIR "/home/$UNAME"
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV PATH="/home/$uname/miniconda3/bin:${PATH}"
-ARG PATH="/home/$uname/miniconda3/bin:${PATH}"
+ENV PATH="/home/$UNAME/miniconda3/bin:${PATH}"
+ARG PATH="/home/$UNAME/miniconda3/bin:${PATH}"
 
 # download and install miniconda
 RUN wget \
     https://repo.anaconda.com/miniconda/Miniconda3-py38_23.1.0-1-Linux-x86_64.sh \
-    && mkdir "/home/$uname/.conda" \
+    && mkdir "/home/$UNAME/.conda" \
     && bash Miniconda3-py38_23.1.0-1-Linux-x86_64.sh -b \
     && rm -f Miniconda3-py38_23.1.0-1-Linux-x86_64.sh
 
 # copy env yaml file
-COPY environment.yaml "/home/$uname"
+COPY environment.yaml "/home/$UNAME"
 
 # create conda env
 RUN conda init bash \
@@ -43,6 +44,13 @@ RUN conda init bash \
 RUN echo "conda activate control" >> ~/.bashrc
 
 # copy all files from current dir except those in .dockerignore
-COPY . "/home/$uname"
+COPY . "/home/$UNAME/ControlNet"
 
+# change file ownership to docker user
+USER root
+RUN chown -R "$UNAME" "/home/$UNAME/ControlNet"
+USER "$UNAME"
+
+# switch to ControlNet dir
+WORKDIR "/home/$UNAME/ControlNet"
 CMD ["/bin/bash"]
