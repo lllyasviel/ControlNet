@@ -50,12 +50,12 @@ Note that the way we connect layers is computational efficient. The original SD 
 
 First create a new conda environment
 
-CUDA, CPU
+#### CUDA, CPU
 
     conda env create -f environment.yaml
     conda activate control
 
-MPS
+#### MPS
 
     conda env create -f environment-mps.yaml
     conda activate control
@@ -194,7 +194,8 @@ Stable Diffusion 1.5 + ControlNet (using human pose)
     python gradio_pose2image.py
 
 #### MPS
-    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_pose2image.py 
+    PYTORCH_ENABLE_MPS_FALLBACK=1 python gradio_pose2image.py
+
 Apparently, this model deserves a better UI to directly manipulate pose skeleton. However, again, Gradio is somewhat difficult to customize. Right now you need to input an image and then the Openpose will detect the pose for you.
 
 Prompt: "Chief in the kitchen"

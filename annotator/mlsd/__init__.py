@@ -23,6 +23,7 @@ class MLSDdetector:
         model = MobileV2_MLSD_Large()
         model.load_state_dict(torch.load(model_path), strict=True)
         self.model = model.to(device).eval()
+        self.device = device
 
     def __call__(self, input_image, thr_v, thr_d):
         assert input_image.ndim == 3
@@ -30,7 +31,7 @@ class MLSDdetector:
         img_output = np.zeros_like(img)
         try:
             with torch.no_grad():
-                lines = pred_lines(img, self.model, [img.shape[0], img.shape[1]], thr_v, thr_d)
+                lines = pred_lines(img, self.model, self.device, [img.shape[0], img.shape[1]], thr_v, thr_d)
                 for line in lines:
                     x_start, y_start, x_end, y_end = [int(val) for val in line]
                     cv2.line(img_output, (x_start, y_start), (x_end, y_end), [255, 255, 255], 1)
