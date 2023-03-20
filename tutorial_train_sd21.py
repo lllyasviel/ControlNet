@@ -1,3 +1,4 @@
+import os
 from share import *
 
 import pytorch_lightning as pl
@@ -14,6 +15,7 @@ logger_freq = 300
 learning_rate = 1e-5
 sd_locked = True
 only_mid_control = False
+workers = os.cpu_count() // 2
 
 
 # First use cpu to load models. Pytorch Lightning will automatically move it to GPUs.
@@ -26,9 +28,9 @@ model.only_mid_control = only_mid_control
 
 # Misc
 dataset = MyDataset()
-dataloader = DataLoader(dataset, num_workers=0, batch_size=batch_size, shuffle=True)
+dataloader = DataLoader(dataset, num_workers=workers, batch_size=batch_size, shuffle=True)
 logger = ImageLogger(batch_frequency=logger_freq)
-trainer = pl.Trainer(gpus=1, precision=32, callbacks=[logger])
+trainer = pl.Trainer(accelerator='gpu', devices='auto', precision=32, callbacks=[logger])
 
 
 # Train!
