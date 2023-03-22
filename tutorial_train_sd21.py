@@ -1,12 +1,14 @@
 import os
 from share import *
 
+import torch
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from tutorial_dataset import MyDataset
 from cldm.logger import ImageLogger
 from cldm.model import create_model, load_state_dict
 
+torch.set_float32_matmul_precision('medium')
 
 # Configs
 resume_path = './models/control_sd21_ini.ckpt'
