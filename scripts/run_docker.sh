@@ -25,10 +25,13 @@ then
    helpFunction
 fi
 
-echo "Stopping and removing docker container '$def_cont' if it is running on port $port"
-echo "Ignore No such container Error messages"
-docker stop "$def_cont_name" || true
-docker rm "$def_cont_name" || true
+# Check if the container is running
+if [ "$(docker ps -q -f name=$def_cont_name)" ]; then
+    # Stop the container
+    echo "Stopping docker container '$def_cont_name'"
+    docker stop "$def_cont_name"
+    echo "Stopped container '$def_cont_name'"
+fi
 
 # 7860 is gradio's default port
 docker run \
