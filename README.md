@@ -1,3 +1,7 @@
+# News: A nightly version of ControlNet 1.1 is released!
+
+Here is the new [ControlNet 1.1](https://github.com/lllyasviel/ControlNet-v1-1-nightly). Those new models will be merged to this repo after we make sure that everything is good.
+
 # ControlNet
 
 Official implementation of [Adding Conditional Control to Text-to-Image Diffusion Models](https://arxiv.org/abs/2302.05543).
