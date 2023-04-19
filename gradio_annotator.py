@@ -1,9 +1,20 @@
 import gradio as gr
+import torch
 
 from annotator.util import resize_image, HWC3
 
 
+def get_device():
+    if torch.cuda.is_available():
+        return 'cuda'
+    elif torch.backends.mps.is_available():
+        return 'mps'
+    else:
+        return 'cpu'
+
+
 model_canny = None
+device = get_device()
 
 
 def canny(img, res, l, h):
@@ -24,7 +35,7 @@ def hed(img, res):
     global model_hed
     if model_hed is None:
         from annotator.hed import HEDdetector
-        model_hed = HEDdetector()
+        model_hed = HEDdetector(device)
     result = model_hed(img)
     return [result]
 
@@ -37,7 +48,7 @@ def mlsd(img, res, thr_v, thr_d):
     global model_mlsd
     if model_mlsd is None:
         from annotator.mlsd import MLSDdetector
-        model_mlsd = MLSDdetector()
+        model_mlsd = MLSDdetector(device)
     result = model_mlsd(img, thr_v, thr_d)
     return [result]
 
@@ -50,7 +61,7 @@ def midas(img, res, a):
     global model_midas
     if model_midas is None:
         from annotator.midas import MidasDetector
-        model_midas = MidasDetector()
+        model_midas = MidasDetector(device)
     results = model_midas(img, a)
     return results
 
@@ -76,7 +87,7 @@ def uniformer(img, res):
     global model_uniformer
     if model_uniformer is None:
         from annotator.uniformer import UniformerDetector
-        model_uniformer = UniformerDetector()
+        model_uniformer = UniformerDetector(device)
     result = model_uniformer(img)
     return [result]
 
