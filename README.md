@@ -105,7 +105,7 @@ Stable Diffusion 1.5 + ControlNet (using soft HED Boundary)
 
 The soft HED Boundary will preserve many details in input images, making this app suitable for recoloring and stylizing. Just try it for more details.
 
-Note that this implementation uses a 3rd-party reimplementation of HED detection by ["sniklaus/pytorch-hed"](https://github.com/sniklaus/pytorch-hed/). The HED codes and weights are lisenced by GPL from [hafriedlander](https://github.com/hafriedlander). The lisence conflits (hafriedlander's GPL license and ControlNet's Apache-2.0 license) are maintained by a [special agreement](https://github.com/sniklaus/pytorch-hed/). Any other projects uses this implementation must follow hafriedlander's GPL license and ControlNet's Apache-2.0 at the same time.
+Note that this implementation uses a 3rd-party reimplementation of HED detection by ["sniklaus/pytorch-hed"](https://github.com/sniklaus/pytorch-hed/). The HED codes and weights are lisenced by GPL from [sniklaus](https://github.com/sniklaus). The lisence conflits (hafriedlander's GPL license and ControlNet's Apache-2.0 license) are maintained by a [special agreement](https://github.com/lllyasviel/ControlNet/issues/262). Any other projects uses this implementation must follow hafriedlander's GPL license and ControlNet's Apache-2.0 at the same time.
 
 Prompt: "oil painting of handsome old man, masterpiece"
 ![p](github_page/p5.png)
