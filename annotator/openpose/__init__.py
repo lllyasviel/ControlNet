@@ -1,7 +1,7 @@
 # Openpose
 # Original from CMU https://github.com/CMU-Perceptual-Computing-Lab/openpose
 # 2nd Edited by https://github.com/Hzzone/pytorch-openpose
-# 3nd Edited by ControlNet
+# 3rd Edited by ControlNet
 
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
