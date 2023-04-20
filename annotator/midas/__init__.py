@@ -1,3 +1,7 @@
+# Midas Depth Estimation
+# From https://github.com/isl-org/MiDaS
+# MIT LICENSE
+
 import cv2
 import numpy as np
 import torch
