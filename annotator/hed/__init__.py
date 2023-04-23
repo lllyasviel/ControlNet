@@ -1,4 +1,4 @@
-# This is an improved version and model of HED edge detection without GPL contamination
+# This is an improved version and model of HED edge detection with Apache License, Version 2.0.
 # Please use this implementation in your products
 # This implementation may produce slightly different results from Saining Xie's official implementations,
 # but it generates smoother edges and is more suitable for ControlNet as well as other image-to-image translations.
