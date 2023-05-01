@@ -30,7 +30,8 @@ if [ "$(docker ps -q -f name=$def_cont_name)" ]; then
     # Stop the container
     echo "Stopping docker container '$def_cont_name'"
     docker stop "$def_cont_name"
-    echo "Stopped container '$def_cont_name'"
+    docker rm "$def_cont_name"
+    echo "Stopped & removed container '$def_cont_name'"
 fi
 
 # 7860 is gradio's default port
