@@ -1,3 +1,7 @@
+# MLSD Line Detection
+# From https://github.com/navervision/mlsd
+# Apache-2.0 license
+
 import cv2
 import numpy as np
 import torch
