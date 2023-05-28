@@ -1,30 +1,28 @@
 from torch.utils.data import Dataset
-import cv2
 from pathlib import Path
 import yaml
+import cv2
+import numpy as np
 
 
 class S2sDataSet(Dataset):
-    def __init__(self, split_file_path, mode="train"):
-        with open(split_file_path, 'r', encoding='utf-8') as split_file:
-            split_data = yaml.safe_load(split_file)
-        if mode in ['train', 'val']:
-            self.files = split_data[mode]
-        else:
-            ValueError(f'Wrong data loader mode.')
+    def __init__(self, dir_path: Path, size):
+        self.source_data = list((dir_path / 'scheme').iterdir())
+        self.size = size
 
     def __getitem__(self, index):
-        simulation_path = Path(self.files[index % len(self.files)])
-        scheme_path = simulation_path.parent.parent / 'scheme' / simulation_path.name
+        scheme_path = self.source_data[index]
+        simulation_path = scheme_path.parent.parent / 'simulation' / scheme_path.name
         prompt = 'flat design'
-
 
         source = cv2.imread(str(scheme_path))
         target = cv2.imread(str(simulation_path))
-
         # Do not forget that OpenCV read images in BGR order.
         source = cv2.cvtColor(source, cv2.COLOR_BGR2RGB)
         target = cv2.cvtColor(target, cv2.COLOR_BGR2RGB)
+        
+        source = cv2.resize(source, self.size)
+        target = cv2.resize(target, self.size)
 
         # Normalize source images to [0, 1].
         source = source.astype(np.float32) / 255.0
@@ -34,4 +32,4 @@ class S2sDataSet(Dataset):
         return dict(jpg=target, txt=prompt, hint=source)
 
     def __len__(self):
-        return len(self.files)
+        return len(self.source_data)
