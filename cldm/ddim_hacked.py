@@ -87,6 +87,7 @@ class DDIMSampler(object):
 
             elif isinstance(conditioning, list):
                 for ctmp in conditioning:
+                    cbs = ctmp.shape[0]
                     if ctmp.shape[0] != batch_size:
                         print(f"Warning: Got {cbs} conditionings but batch-size is {batch_size}")
 
