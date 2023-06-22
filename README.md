@@ -14,7 +14,7 @@ It copys the weights of neural network blocks into a "locked" copy and a "traina
 
 The "trainable" one learns your condition. The "locked" one preserves your model. 
 
-Thanks to this, training with small dataset of image pairs will not destroy the production-ready diffusion models.
+Thanks to this, training with a small dataset of image pairs will not destroy the production-ready diffusion models.
 
 The "zero convolution" is 1×1 convolution with both weight and bias initialized as zeros. 
 
@@ -40,7 +40,7 @@ By repeating the above simple structure 14 times, we can control stable diffusio
 
 In this way, the ControlNet can **reuse** the SD encoder as a **deep, strong, robust, and powerful backbone** to learn diverse controls. Many evidences (like [this](https://jerryxu.net/ODISE/) and [this](https://vpd.ivg-research.xyz/)) validate that the SD encoder is an excellent backbone.
 
-Note that the way we connect layers is computational efficient. The original SD encoder does not need to store gradients (the locked original SD Encoder Block 1234 and Middle). The required GPU memory is not much larger than original SD, although many layers are added. Great!
+Note that the way we connect layers is computationally efficient. The original SD encoder does not need to store gradients (the locked original SD Encoder Block 1234 and Middle). The required GPU memory is not much larger than the original SD, although many layers are added. Great!
 
 # Features & News
 
@@ -67,7 +67,7 @@ All models and detectors can be downloaded from [our Hugging Face page](https://
 
 We provide 9 Gradio apps with these models.
 
-All test images can be found at the folder "test_imgs".
+All test images can be found in the folder "test_imgs".
 
 ## ControlNet with Canny Edge
 
@@ -201,7 +201,7 @@ Stable Diffusion 1.5 + ControlNet (using normal map)
 
     python gradio_normal2image.py
 
-This model use normal map. Rightnow in the APP, the normal is computed from the midas depth map and a user threshold (to determine how many area is background with identity normal face to viewer, tune the "Normal background threshold" in the gradio app to get a feeling).
+This model uses a normal map. Right now in the APP, the normal is computed from the midas depth map and a user threshold (to determine how many area is background with identity normal face to viewer, tune the "Normal background threshold" in the gradio app to get a feeling).
 
 Prompt: "Cute toy"
 ![p](github_page/p17.png)
@@ -232,7 +232,7 @@ See also the blog - [Ablation Study: Why ControlNets use deep encoder? What if i
 
 You need to manually check the "Guess Mode" toggle to enable this mode.
 
-In this mode, the ControlNet encoder will try best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even if you remove all prompts.
+In this mode, the ControlNet encoder will try its best to recognize the content of the input control map, like depth map, edge map, scribbles, etc, even if you remove all prompts.
 
 **Let's have fun with some very challenging experimental settings!**
 
@@ -250,7 +250,7 @@ Note that the below example is 768×768. No prompts. No "positive" prompts. No "
 
 ![p](github_page/uc1.png)
 
-By tuning the parameters, you can get some very intereting results like below:
+By tuning the parameters, you can get some very interesting results like below:
 
 ![p](github_page/uc3.png)
 
@@ -258,7 +258,7 @@ Because no prompt is available, the ControlNet encoder will "guess" what is in t
 
 ![p](github_page/uc4.png)
 
-Without prompt, the HED seems good at generating images look like paintings when the control strength is relatively low:
+Without prompt, the HED seems good at generating images that look like paintings when the control strength is relatively low:
 
 ![p](github_page/uc6.png)
 
@@ -316,7 +316,7 @@ Training a ControlNet is as easy as (or even easier than) training a simple pix2
 
 # Related Resources
 
-Special Thank to the great project - [Mikubill' A1111 Webui Plugin](https://github.com/Mikubill/sd-webui-controlnet) !
+Special Thanks to the great project - [Mikubill' A1111 Webui Plugin](https://github.com/Mikubill/sd-webui-controlnet) !
 
 We also thank Hysts for making [Hugging Face Space](https://huggingface.co/spaces/hysts/ControlNet) as well as more than 65 models in that amazing [Colab list](https://github.com/camenduru/controlnet-colab)! 
 
