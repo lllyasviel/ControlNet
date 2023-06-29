@@ -1,4 +1,5 @@
 import importlib
+import os
 
 import torch
 from torch import optim
@@ -16,7 +17,10 @@ def log_txt_as_img(wh, xc, size=10):
     for bi in range(b):
         txt = Image.new("RGB", wh, color="white")
         draw = ImageDraw.Draw(txt)
-        font = ImageFont.truetype('font/DejaVuSans.ttf', size=size)
+        if os.path.isfile('font/DejaVuSans.ttf'):
+            font = ImageFont.truetype('font/DejaVuSans.ttf', size=size)
+        else:
+            font = ImageFont.load_default()
         nc = int(40 * (wh[0] / 256))
         lines = "\n".join(xc[bi][start:start + nc] for start in range(0, len(xc[bi]), nc))
 
