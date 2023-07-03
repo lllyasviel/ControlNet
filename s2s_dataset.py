@@ -20,7 +20,7 @@ class S2sDataSet(Dataset):
         # Do not forget that OpenCV read images in BGR order.
         source = cv2.cvtColor(source, cv2.COLOR_BGR2RGB)
         target = cv2.cvtColor(target, cv2.COLOR_BGR2RGB)
-        
+
         source = cv2.resize(source, self.size)
         target = cv2.resize(target, self.size)
 
