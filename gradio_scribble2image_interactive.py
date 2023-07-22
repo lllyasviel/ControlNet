@@ -16,7 +16,7 @@ from cldm.ddim_hacked import DDIMSampler
 
 model = create_model('./models/cldm_v15.yaml').cpu()
 model.load_state_dict(load_state_dict('./models/control_sd15_scribble.pth', location='cuda'))
-model = model.cuda()
+model = model.to(config.device)
 ddim_sampler = DDIMSampler(model)
 
 
@@ -28,7 +28,7 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
         detected_map = np.zeros_like(img, dtype=np.uint8)
         detected_map[np.min(img, axis=2) > 127] = 255
 
-        control = torch.from_numpy(detected_map.copy()).float().cuda() / 255.0
+        control = torch.from_numpy(detected_map.copy()).float().to(config.device) / 255.0
         control = torch.stack([control for _ in range(num_samples)], dim=0)
         control = einops.rearrange(control, 'b h w c -> b c h w').clone()
 

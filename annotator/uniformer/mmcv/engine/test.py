@@ -10,6 +10,7 @@ import torch.distributed as dist
 
 import annotator.uniformer.mmcv as mmcv
 from annotator.uniformer.mmcv.runner import get_dist_info
+import config
 
 
 def single_gpu_test(model, data_loader):
@@ -114,12 +115,12 @@ def collect_results_cpu(result_part, size, tmpdir=None):
         dir_tensor = torch.full((MAX_LEN, ),
                                 32,
                                 dtype=torch.uint8,
-                                device='cuda')
+                                device=config.device)
         if rank == 0:
             mmcv.mkdir_or_exist('.dist_test')
             tmpdir = tempfile.mkdtemp(dir='.dist_test')
             tmpdir = torch.tensor(
-                bytearray(tmpdir.encode()), dtype=torch.uint8, device='cuda')
+                bytearray(tmpdir.encode()), dtype=torch.uint8, device=config.device)
             dir_tensor[:len(tmpdir)] = tmpdir
         dist.broadcast(dir_tensor, 0)
         tmpdir = dir_tensor.cpu().numpy().tobytes().decode().rstrip()
@@ -170,14 +171,14 @@ def collect_results_gpu(result_part, size):
     rank, world_size = get_dist_info()
     # dump result part to tensor with pickle
     part_tensor = torch.tensor(
-        bytearray(pickle.dumps(result_part)), dtype=torch.uint8, device='cuda')
+        bytearray(pickle.dumps(result_part)), dtype=torch.uint8, device=config.device)
     # gather all result part tensor shape
-    shape_tensor = torch.tensor(part_tensor.shape, device='cuda')
+    shape_tensor = torch.tensor(part_tensor.shape, device=config.device)
     shape_list = [shape_tensor.clone() for _ in range(world_size)]
     dist.all_gather(shape_list, shape_tensor)
     # padding result part tensor to max length
     shape_max = torch.tensor(shape_list).max()
-    part_send = torch.zeros(shape_max, dtype=torch.uint8, device='cuda')
+    part_send = torch.zeros(shape_max, dtype=torch.uint8, device=config.device)
     part_send[:shape_tensor[0]] = part_tensor
     part_recv_list = [
         part_tensor.new_zeros(shape_max) for _ in range(world_size)

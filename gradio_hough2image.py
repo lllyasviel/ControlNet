@@ -19,7 +19,7 @@ apply_mlsd = MLSDdetector()
 
 model = create_model('./models/cldm_v15.yaml').cpu()
 model.load_state_dict(load_state_dict('./models/control_sd15_mlsd.pth', location='cuda'))
-model = model.cuda()
+model = model.to(config.device)
 ddim_sampler = DDIMSampler(model)
 
 
@@ -33,7 +33,7 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
 
         detected_map = cv2.resize(detected_map, (W, H), interpolation=cv2.INTER_NEAREST)
 
-        control = torch.from_numpy(detected_map.copy()).float().cuda() / 255.0
+        control = torch.from_numpy(detected_map.copy()).float().to(config.device) / 255.0
         control = torch.stack([control for _ in range(num_samples)], dim=0)
         control = einops.rearrange(control, 'b h w c -> b c h w').clone()
 

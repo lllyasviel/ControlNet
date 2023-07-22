@@ -12,6 +12,7 @@ import numpy as np
 
 from einops import rearrange
 from annotator.util import annotator_ckpts_path
+import config
 
 
 class DoubleConvBlock(torch.nn.Module):
@@ -60,14 +61,14 @@ class HEDdetector:
         if not os.path.exists(modelpath):
             from basicsr.utils.download_util import load_file_from_url
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
-        self.netNetwork = ControlNetHED_Apache2().float().cuda().eval()
+        self.netNetwork = ControlNetHED_Apache2().float().to(config.device).eval()
         self.netNetwork.load_state_dict(torch.load(modelpath))
 
     def __call__(self, input_image):
         assert input_image.ndim == 3
         H, W, C = input_image.shape
         with torch.no_grad():
-            image_hed = torch.from_numpy(input_image.copy()).float().cuda()
+            image_hed = torch.from_numpy(input_image.copy()).float().to(config.device)
             image_hed = rearrange(image_hed, 'h w c -> 1 c h w')
             edges = self.netNetwork(image_hed)
             edges = [e.detach().cpu().numpy().astype(np.float32)[0, 0] for e in edges]
