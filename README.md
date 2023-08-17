@@ -308,7 +308,7 @@ We provide simple python scripts to process images.
 
 [See a gradio example here](docs/annotator.md).
 
-# Train with Your Own Data
+# Train with Your Own 
 
 Training a ControlNet is as easy as (or even easier than) training a simple pix2pix. 
 
