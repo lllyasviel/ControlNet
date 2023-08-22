@@ -1,1 +1,1 @@
-save_memory = False
+save_memory = True
