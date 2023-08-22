@@ -1,6 +1,5 @@
 from torch.utils.data import Dataset
 from pathlib import Path
-import yaml
 import cv2
 import numpy as np
 
