@@ -6,6 +6,7 @@ import torchvision
 from PIL import Image
 from pytorch_lightning.callbacks import Callback
 from pytorch_lightning.utilities.rank_zero import rank_zero_only
+from pathlib import Path
 
 
 class ImageLogger(Callback):
@@ -26,17 +27,17 @@ class ImageLogger(Callback):
 
     @rank_zero_only
     def log_local(self, save_dir, split, images, global_step, current_epoch, batch_idx):
-        root = os.path.join(save_dir, "image_log", split)
         for k in images:
+            root = Path(save_dir, "image_log", split, k)
+            root.mkdir(parents=True, exist_ok=True)
             grid = torchvision.utils.make_grid(images[k], nrow=4)
             if self.rescale:
                 grid = (grid + 1.0) / 2.0  # -1,1 -> 0,1; c,h,w
             grid = grid.transpose(0, 1).transpose(1, 2).squeeze(-1)
             grid = grid.numpy()
             grid = (grid * 255).astype(np.uint8)
-            filename = "{}_gs-{:06}_e-{:06}_b-{:06}.png".format(k, global_step, current_epoch, batch_idx)
-            path = os.path.join(root, filename)
-            os.makedirs(os.path.split(path)[0], exist_ok=True)
+            filename = "gs-{:06}_e-{:06}_b-{:06}.png".format(global_step, current_epoch, batch_idx)
+            path = root / filename
             Image.fromarray(grid).save(path)
 
     def log_img(self, pl_module, batch, batch_idx, split="train"):
@@ -74,3 +75,7 @@ class ImageLogger(Callback):
     def on_train_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
         if not self.disabled:
             self.log_img(pl_module, batch, batch_idx, split="train")
+
+    def on_validation_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
+        if not self.disabled:
+            self.log_img(pl_module, batch, batch_idx, split="val")
