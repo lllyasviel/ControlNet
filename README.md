@@ -345,4 +345,4 @@ And these amazing recent projects: [InstructPix2Pix Learning to Follow Image Edi
 
 [Arxiv Link](https://arxiv.org/abs/2302.05543)
 
-[Supplementary Materials](https://github.com/lllyasviel/misc/blob/main/202309/cnet_supp.pdf)
+[Supplementary Materials](https://lllyasviel.github.io/misc/202309/cnet_supp.pdf)
