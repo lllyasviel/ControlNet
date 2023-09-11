@@ -10,7 +10,7 @@ ControlNet is a neural network structure to control diffusion models by adding e
 
 ![img](github_page/he.png)
 
-It copys the weights of neural network blocks into a "locked" copy and a "trainable" copy. 
+It copies the weights of neural network blocks into a "locked" copy and a "trainable" copy. 
 
 The "trainable" one learns your condition. The "locked" one preserves your model. 
 
