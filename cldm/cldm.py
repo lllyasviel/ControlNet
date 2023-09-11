@@ -17,6 +17,7 @@ from ldm.modules.diffusionmodules.openaimodel import UNetModel, TimestepEmbedSeq
 from ldm.models.diffusion.ddpm import LatentDiffusion
 from ldm.util import log_txt_as_img, exists, instantiate_from_config
 from ldm.models.diffusion.ddim import DDIMSampler
+import config
 
 
 class ControlledUnetModel(UNetModel):
@@ -424,12 +425,12 @@ class ControlLDM(LatentDiffusion):
 
     def low_vram_shift(self, is_diffusing):
         if is_diffusing:
-            self.model = self.model.cuda()
-            self.control_model = self.control_model.cuda()
+            self.model = self.model.to(config.device)
+            self.control_model = self.control_model.to(config.device)
             self.first_stage_model = self.first_stage_model.cpu()
             self.cond_stage_model = self.cond_stage_model.cpu()
         else:
             self.model = self.model.cpu()
             self.control_model = self.control_model.cpu()
-            self.first_stage_model = self.first_stage_model.cuda()
-            self.cond_stage_model = self.cond_stage_model.cuda()
+            self.first_stage_model = self.first_stage_model.to(config.device)
+            self.cond_stage_model = self.cond_stage_model.to(config.device)

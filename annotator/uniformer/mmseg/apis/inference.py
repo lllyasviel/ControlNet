@@ -6,9 +6,10 @@ from annotator.uniformer.mmcv.runner import load_checkpoint
 
 from annotator.uniformer.mmseg.datasets.pipelines import Compose
 from annotator.uniformer.mmseg.models import build_segmentor
+import config
 
 
-def init_segmentor(config, checkpoint=None, device='cuda:0'):
+def init_segmentor(config, checkpoint=None, device=config.device):
     """Initialize a segmentor from config file.
 
     Args:

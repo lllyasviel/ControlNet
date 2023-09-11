@@ -7,6 +7,7 @@ import os
 from annotator.uniformer.mmseg.apis import init_segmentor, inference_segmentor, show_result_pyplot
 from annotator.uniformer.mmseg.core.evaluation import get_palette
 from annotator.util import annotator_ckpts_path
+import config
 
 
 checkpoint_file = "https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/upernet_global_small.pth"
@@ -19,7 +20,7 @@ class UniformerDetector:
             from basicsr.utils.download_util import load_file_from_url
             load_file_from_url(checkpoint_file, model_dir=annotator_ckpts_path)
         config_file = os.path.join(os.path.dirname(annotator_ckpts_path), "uniformer", "exp", "upernet_global_small", "config.py")
-        self.model = init_segmentor(config_file, modelpath).cuda()
+        self.model = init_segmentor(config_file, modelpath).to(config.device)
 
     def __call__(self, img):
         result = inference_segmentor(self.model, img)

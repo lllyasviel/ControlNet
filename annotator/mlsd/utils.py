@@ -14,6 +14,7 @@ import numpy as np
 import cv2
 import torch
 from  torch.nn import  functional as F
+import config
 
 
 def deccode_output_score_and_ptss(tpMap, topk_n = 200, ksize = 5):
@@ -58,7 +59,7 @@ def pred_lines(image, model,
     batch_image = np.expand_dims(resized_image, axis=0).astype('float32')
     batch_image = (batch_image / 127.5) - 1.0
 
-    batch_image = torch.from_numpy(batch_image).float().cuda()
+    batch_image = torch.from_numpy(batch_image).float().to(config.device)
     outputs = model(batch_image)
     pts, pts_score, vmap = deccode_output_score_and_ptss(outputs, 200, 3)
     start = vmap[:, :, :2]
@@ -109,7 +110,7 @@ def pred_squares(image,
     batch_image = np.expand_dims(resized_image, axis=0).astype('float32')
     batch_image = (batch_image / 127.5) - 1.0
 
-    batch_image = torch.from_numpy(batch_image).float().cuda()
+    batch_image = torch.from_numpy(batch_image).float().to(config.device)
     outputs = model(batch_image)
 
     pts, pts_score, vmap = deccode_output_score_and_ptss(outputs, 200, 3)

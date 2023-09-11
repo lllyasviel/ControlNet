@@ -9,6 +9,7 @@ from annotator.uniformer.mmcv.runner import build_optimizer, build_runner
 from annotator.uniformer.mmseg.core import DistEvalHook, EvalHook
 from annotator.uniformer.mmseg.datasets import build_dataloader, build_dataset
 from annotator.uniformer.mmseg.utils import get_root_logger
+import config
 
 
 def set_random_seed(seed, deterministic=False):
@@ -60,7 +61,7 @@ def train_segmentor(model,
         # Sets the `find_unused_parameters` parameter in
         # torch.nn.parallel.DistributedDataParallel
         model = MMDistributedDataParallel(
-            model.cuda(),
+            model.to(config.device),
             device_ids=[torch.cuda.current_device()],
             broadcast_buffers=False,
             find_unused_parameters=find_unused_parameters)
