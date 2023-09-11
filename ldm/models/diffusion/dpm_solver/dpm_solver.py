@@ -307,7 +307,28 @@ def model_wrapper(
             else:
                 x_in = torch.cat([x] * 2)
                 t_in = torch.cat([t_continuous] * 2)
-                c_in = torch.cat([unconditional_condition, condition])
+                
+                if isinstance(condition, dict):
+                    assert isinstance(unconditional_condition, dict)
+                    c_in = dict()
+                    for k in condition:
+                        if isinstance(condition[k], list):
+                            c_in[k] = [torch.cat([
+                                unconditional_condition[k][i],
+                                condition[k][i]]) for i in range(len(condition[k]))]
+                        else:
+                            c_in[k] = torch.cat([
+                                    unconditional_condition[k],
+                                    condition[k]])
+                elif isinstance(condition, list):
+                    c_in = list()
+                    assert isinstance(unconditional_condition, list)
+                    for i in range(len(condition)):
+                        c_in.append(torch.cat([unconditional_condition[i], condition[i]]))
+                else:
+                    c_in = torch.cat([unconditional_condition, condition])
+                
+#                 c_in = torch.cat([unconditional_condition, condition])
                 noise_uncond, noise = noise_pred_fn(x_in, t_in, cond=c_in).chunk(2)
                 return noise_uncond + guidance_scale * (noise - noise_uncond)
 
@@ -317,7 +338,7 @@ def model_wrapper(
 
 
 class DPM_Solver:
-    def __init__(self, model_fn, noise_schedule, predict_x0=False, thresholding=False, max_val=1.):
+    def __init__(self, model_fn, noise_schedule, predict_x0=False, thresholding=True, max_val=1.):
         """Construct a DPM-Solver.
         We support both the noise prediction model ("predicting epsilon") and the data prediction model ("predicting x0").
         If `predict_x0` is False, we use the solver for the noise prediction model (DPM-Solver).
