@@ -339,8 +339,8 @@ And these amazing recent projects: [InstructPix2Pix Learning to Follow Image Edi
     @misc{zhang2023adding,
       title={Adding Conditional Control to Text-to-Image Diffusion Models}, 
       author={Lvmin Zhang and Anyi Rao and Maneesh Agrawala},
-      booktitle={IEEE International Conference on Computer Vision (ICCV)}
-      year={2023},
+      booktitle={IEEE International Conference on Computer Vision (ICCV)},
+      year={2023}
     }
 
 [Arxiv Link](https://arxiv.org/abs/2302.05543)
