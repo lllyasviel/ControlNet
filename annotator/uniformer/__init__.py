@@ -18,10 +18,12 @@ class UniformerDetector:
         if not os.path.exists(modelpath):
             from basicsr.utils.download_util import load_file_from_url
             load_file_from_url(checkpoint_file, model_dir=annotator_ckpts_path)
+        # config.py（默认ADE20K）
         config_file = os.path.join(os.path.dirname(annotator_ckpts_path), "uniformer", "exp", "upernet_global_small", "config.py")
         self.model = init_segmentor(config_file, modelpath).cuda()
 
     def __call__(self, img):
         result = inference_segmentor(self.model, img)
+        # palette: cityscapes, ade, voc
         res_img = show_result_pyplot(self.model, img, result, get_palette('ade'), opacity=1)
         return res_img

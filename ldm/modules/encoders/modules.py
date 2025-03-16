@@ -92,7 +92,9 @@ class FrozenCLIPEmbedder(AbstractEncoder):
         "pooled",
         "hidden"
     ]
-    def __init__(self, version="openai/clip-vit-large-patch14", device="cuda", max_length=77,
+    # def __init__(self, version="/home/data2/yangsp22/openaiclip-vit-large-patch14", device="cuda", max_length=77,
+    #              freeze=True, layer="last", layer_idx=None):  # clip-vit-base-patch32
+    def __init__(self, version="clip-vit-base-patch32", device="cuda", max_length=77,
                  freeze=True, layer="last", layer_idx=None):  # clip-vit-base-patch32
         super().__init__()
         assert layer in self.LAYERS
@@ -140,8 +142,10 @@ class FrozenOpenCLIPEmbedder(AbstractEncoder):
         "last",
         "penultimate"
     ]
+    # def __init__(self, arch="ViT-H-14", version="/home/data2/yangsp22/CLIP-ViT-H-14-laion2B-s32B-b79K/open_clip_pytorch_model.bin", device="cuda", max_length=77,
+    #              freeze=True, layer="last"): # version="laion2b_s32b_b79k"
     def __init__(self, arch="ViT-H-14", version="laion2b_s32b_b79k", device="cuda", max_length=77,
-                 freeze=True, layer="last"):
+                 freeze=True, layer="last"): # version="laion2b_s32b_b79k"
         super().__init__()
         assert layer in self.LAYERS
         model, _, _ = open_clip.create_model_and_transforms(arch, device=torch.device('cpu'), pretrained=version)

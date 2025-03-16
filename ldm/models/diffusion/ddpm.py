@@ -17,7 +17,8 @@ from functools import partial
 import itertools
 from tqdm import tqdm
 from torchvision.utils import make_grid
-from pytorch_lightning.utilities.distributed import rank_zero_only
+# from pytorch_lightning.utilities.distributed import rank_zero_only
+from pytorch_lightning.utilities.rank_zero import rank_zero_only
 from omegaconf import ListConfig
 
 from ldm.util import log_txt_as_img, exists, default, ismap, isimage, mean_flat, count_params, instantiate_from_config
@@ -445,11 +446,11 @@ class DDPM(pl.LightningModule):
                       logger=True, on_step=True, on_epoch=True)
 
         self.log("global_step", self.global_step,
-                 prog_bar=True, logger=True, on_step=True, on_epoch=False)
+                 prog_bar=True, logger=True, on_step=True, on_epoch=False, batch_size=len(batch['txt']))
 
         if self.use_scheduler:
             lr = self.optimizers().param_groups[0]['lr']
-            self.log('lr_abs', lr, prog_bar=True, logger=True, on_step=True, on_epoch=False)
+            self.log('lr_abs', lr, prog_bar=True, logger=True, on_step=True, on_epoch=False, batch_size=len(batch['txt']))
 
         return loss
 

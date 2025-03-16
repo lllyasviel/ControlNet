@@ -76,6 +76,7 @@ def instantiate_from_config(config):
         elif config == "__is_unconditional__":
             return None
         raise KeyError("Expected key `target` to instantiate.")
+    #!!!
     return get_obj_from_str(config["target"])(**config.get("params", dict()))
 
 
@@ -84,6 +85,8 @@ def get_obj_from_str(string, reload=False):
     if reload:
         module_imp = importlib.import_module(module)
         importlib.reload(module_imp)
+    #!!!
+    # print(getattr(importlib.import_module(module, package=None), cls))
     return getattr(importlib.import_module(module, package=None), cls)
 
 
