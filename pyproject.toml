@@ -1,0 +1,39 @@
+[project]
+name = "control-net"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "addict>=2.4.0",
+    "albumentations>=2.0.8",
+    "cuda-toolkit>=13.0.1",
+    "einops>=0.8.1",
+    "gradio>=5.46.1",
+    "imageio>=2.37.0",
+    "imageio-ffmpeg>=0.6.0",
+    "invisible-watermark>=0.2.0",
+    "kornia>=0.8.1",
+    "matplotlib>=3.10.6",
+    "numpy>=2.3.3",
+    "omegaconf>=2.3.0",
+    "open-clip-torch>=3.1.0",
+    "opencv-contrib-python>=4.11.0.86",
+    "prettytable>=3.16.0",
+    "pytorch-lightning>=2.5.5",
+    "safetensors>=0.6.2",
+    "streamlit>=1.49.1",
+    "streamlit-drawable-canvas>=0.9.3",
+    "test-tube>=0.7.5",
+    "timm>=1.0.19",
+    "torch>=2.8.0",
+    "torchmetrics>=1.8.2",
+    "torchvision>=0.23.0",
+    "transformers>=4.56.2",
+    "webdataset>=1.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.5.0",
+]

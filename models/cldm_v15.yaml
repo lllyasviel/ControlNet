@@ -1,5 +1,5 @@
 model:
-  target: cldm.cldm.ControlLDM
+  target: control_net.cldm.cldm.ControlLDM
   params:
     linear_start: 0.00085
     linear_end: 0.0120
@@ -19,7 +19,7 @@ model:
     only_mid_control: False
 
     control_stage_config:
-      target: cldm.cldm.ControlNet
+      target: control_net.cldm.cldm.ControlNet
       params:
         image_size: 32 # unused
         in_channels: 4
@@ -36,7 +36,7 @@ model:
         legacy: False
 
     unet_config:
-      target: cldm.cldm.ControlledUnetModel
+      target: control_net.cldm.cldm.ControlledUnetModel
       params:
         image_size: 32 # unused
         in_channels: 4
@@ -53,7 +53,7 @@ model:
         legacy: False
 
     first_stage_config:
-      target: ldm.models.autoencoder.AutoencoderKL
+      target: control_net.ldm.models.autoencoder.AutoencoderKL
       params:
         embed_dim: 4
         monitor: val/rec_loss
@@ -76,4 +76,4 @@ model:
           target: torch.nn.Identity
 
     cond_stage_config:
-      target: ldm.modules.encoders.modules.FrozenCLIPEmbedder
+      target: control_net.ldm.modules.encoders.modules.FrozenCLIPEmbedder
